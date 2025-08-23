@@ -285,7 +285,7 @@ const Rentals = () => {
               alt="Golf carts lined up on a beautiful beach in San Pedro, Belize" 
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent"></div>
             <div className="relative p-8 md:p-12 text-center text-white">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Explore Paradise?
