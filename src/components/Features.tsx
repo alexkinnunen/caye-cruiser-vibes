@@ -13,19 +13,9 @@ import {
 const Features = () => {
   const features = [
     {
-      icon: <Navigation className="w-6 h-6" />,
-      title: "Bumpy Road Algorithm",
-      description: "Smart routing that chooses the smoothest path to your destination, avoiding those famous San Pedro potholes.",
-    },
-    {
       icon: <Users className="w-6 h-6" />,
       title: "Tour Stop Mode",
       description: "Add multiple stops to explore the island. Perfect for beach hopping, dining, and sightseeing in one trip.",
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Points of Interest",
-      description: "Tap to select from curated destinations like Secret Beach, The Truck Stop, and Hol Chan Marine Reserve.",
     },
     {
       icon: <Truck className="w-6 h-6" />,
