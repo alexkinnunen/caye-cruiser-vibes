@@ -11,7 +11,11 @@ import {
   MapPin, 
   Star,
   CheckCircle,
-  Fuel
+  Fuel,
+  Truck,
+  ShieldCheck,
+  Umbrella,
+  Wrench
 } from "lucide-react";
 
 const Rentals = () => {
@@ -100,23 +104,27 @@ const Rentals = () => {
 
   const additionalServices = [
     {
+      icon: <Truck className="w-6 h-6" />,
       name: "Delivery & Pickup",
-      description: "We'll bring your cart to you anywhere on the island",
+      description: "We'll bring your cart to you anywhere on the island.",
       price: "$15"
     },
     {
+      icon: <ShieldCheck className="w-6 h-6" />,
       name: "Baby/Child Seats",
-      description: "Safety first for your little adventurers",
+      description: "Safety first for your little adventurers.",
       price: "$5/day"
     },
     {
+      icon: <Umbrella className="w-6 h-6" />,
       name: "Beach Gear Package",
-      description: "Umbrellas, chairs, cooler, and snorkel gear",
+      description: "Chairs, cooler, and snorkel gear.",
       price: "$25/day"
     },
     {
+      icon: <Wrench className="w-6 h-6" />,
       name: "24/7 Roadside Support",
-      description: "Peace of mind with island-wide assistance",
+      description: "Peace of mind with island-wide assistance.",
       price: "Included"
     }
   ];
@@ -250,10 +258,15 @@ const Rentals = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {additionalServices.map((service, index) => (
-              <Card key={index}>
-                <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold text-foreground mb-2">{service.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{service.description}</p>
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:scale-105 border-border/50">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-lg pt-4">{service.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4 h-12">{service.description}</p>
                   <div className="text-lg font-bold text-primary">{service.price}</div>
                 </CardContent>
               </Card>
