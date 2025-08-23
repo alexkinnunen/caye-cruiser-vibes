@@ -263,23 +263,30 @@ const Rentals = () => {
       </section>
 
       {/* Booking CTA */}
-      <section className="py-16">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-br from-yellow-50 via-amber-100 to-yellow-200 rounded-3xl p-8 md:p-12 text-center text-gray-800">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Ready to Explore Paradise?
-            </h2>
-            <p className="text-lg mb-8 text-gray-700 max-w-2xl mx-auto">
-              Book your golf cart rental today and start your San Pedro adventure. 
-              Free delivery anywhere on the island with advance booking.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="default" className="bg-primary text-white hover:bg-primary-glow">
-                Call +501-XXX-XXXX
-              </Button>
-              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                Book Online
-              </Button>
+          <div className="relative overflow-hidden rounded-3xl bg-muted p-8 md:p-12 text-center">
+            <div className="absolute -bottom-12 -right-12 w-48 h-48 text-primary/10" aria-hidden="true">
+              <svg fill="currentColor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M100 0a100 100 0 100 200A100 100 0 00100 0zM23.6 120.1c-2.5-1.6-4-4.5-4-7.6 0-5.2 4.2-9.4 9.4-9.4h142c5.2 0 9.4 4.2 9.4 9.4 0 3.1-1.5 6-4 7.6L125 152.8c-2.3 1.5-5.1 2.3-7.9 2.3h-34c-2.9 0-5.6-.8-7.9-2.3L23.6 120.1zM100 20c-11 0-20 9-20 20v20c0 11 9 20 20 20s20-9 20-20V40c0-11-9-20-20-20z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="relative">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+                Ready to Explore Paradise?
+              </h2>
+              <p className="text-lg mb-8 text-muted-foreground max-w-2xl mx-auto">
+                Book your golf cart rental today and start your San Pedro adventure. 
+                Free delivery anywhere on the island with advance booking.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="hero">
+                  Call +501-XXX-XXXX
+                </Button>
+                <Button size="lg" variant="outline">
+                  Book Online
+                </Button>
+              </div>
             </div>
           </div>
         </div>
