@@ -23,16 +23,6 @@ const Features = () => {
       description: "Need groceries or restaurant delivery? Our drivers can pick up and deliver while you relax.",
     },
     {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Island Time Scheduling",
-      description: "Book rides for 'around sunset' or 'after lunch' – we understand the relaxed pace of island life.",
-    },
-    {
-      icon: <DollarSign className="w-6 h-6" />,
-      title: "Transparent Pricing",
-      description: "No negotiating, no surprises. See your exact fare upfront with multiple payment options.",
-    },
-    {
       icon: <Smartphone className="w-6 h-6" />,
       title: "Real-Time Tracking",
       description: "Watch your driver's location live on the map with accurate arrival times.",
