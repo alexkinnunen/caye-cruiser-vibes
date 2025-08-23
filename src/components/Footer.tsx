@@ -25,13 +25,13 @@ const Footer = () => {
               Ambergris Caye with the perfect blend of efficiency and relaxation.
             </p>
             <div className="flex gap-3">
-              <Button variant="secondary" size="icon">
+              <Button variant="coral" size="icon">
                 <Facebook className="w-4 h-4" />
               </Button>
-              <Button variant="secondary" size="icon">
+              <Button variant="coral" size="icon">
                 <Instagram className="w-4 h-4" />
               </Button>
-              <Button variant="secondary" size="icon">
+              <Button variant="coral" size="icon">
                 <Twitter className="w-4 h-4" />
               </Button>
             </div>
