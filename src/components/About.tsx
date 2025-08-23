@@ -70,13 +70,13 @@ const About = () => {
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Caye Cruiser?</h3>
             
             <div className="space-y-4">
-              <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
+                 <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>No negotiating fares – transparent pricing always</span>
+                <span>Skip the rental hassles – we handle everything</span>
               </div>
               <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>Skip the rental hassles – we handle everything</span>
+                <span>No negotiating fares – transparent pricing always</span>
               </div>
               <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
