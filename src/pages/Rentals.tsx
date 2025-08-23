@@ -265,19 +265,19 @@ const Rentals = () => {
       {/* Booking CTA */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-r from-primary to-primary-glow rounded-3xl p-8 md:p-12 text-center text-primary-foreground">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="bg-gradient-to-br from-yellow-50 via-amber-100 to-yellow-200 rounded-3xl p-8 md:p-12 text-center text-gray-800">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               Ready to Explore Paradise?
             </h2>
-            <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+            <p className="text-lg mb-8 text-gray-700 max-w-2xl mx-auto">
               Book your golf cart rental today and start your San Pedro adventure. 
               Free delivery anywhere on the island with advance booking.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="text-primary">
+              <Button size="lg" variant="default" className="bg-primary text-white hover:bg-primary-glow">
                 Call +501-XXX-XXXX
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
                 Book Online
               </Button>
             </div>
