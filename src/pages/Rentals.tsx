@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ctaImage from "@/assets/cta-beach.jpg";
+import ctaImage from "@src/assets/golf-carts-on-san-pedro-beach.jpg";
 import { 
   Clock, 
   Users, 
