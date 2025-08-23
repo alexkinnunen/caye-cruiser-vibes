@@ -80,10 +80,6 @@ const About = () => {
               </div>
               <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>Expert navigation of bumpy island roads</span>
-              </div>
-              <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
                 <span>Support local families and businesses</span>
               </div>
               <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
