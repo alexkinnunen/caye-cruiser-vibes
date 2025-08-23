@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ctaImage from "@/assets/cta-beach.jpg";
 import { 
   Clock, 
   Users, 
@@ -278,17 +279,18 @@ const Rentals = () => {
       {/* Booking CTA */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="relative overflow-hidden rounded-3xl bg-muted p-8 md:p-12 text-center">
-            <div className="absolute -bottom-12 -right-12 w-48 h-48 text-primary/10" aria-hidden="true">
-              <svg fill="currentColor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M100 0a100 100 0 100 200A100 100 0 00100 0zM23.6 120.1c-2.5-1.6-4-4.5-4-7.6 0-5.2 4.2-9.4 9.4-9.4h142c5.2 0 9.4 4.2 9.4 9.4 0 3.1-1.5 6-4 7.6L125 152.8c-2.3 1.5-5.1 2.3-7.9 2.3h-34c-2.9 0-5.6-.8-7.9-2.3L23.6 120.1zM100 20c-11 0-20 9-20 20v20c0 11 9 20 20 20s20-9 20-20V40c0-11-9-20-20-20z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <div className="relative overflow-hidden rounded-3xl">
+            <img 
+              src={ctaImage} 
+              alt="Golf cart on a beautiful beach" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="relative p-8 md:p-12 text-center text-white">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Explore Paradise?
               </h2>
-              <p className="text-lg mb-8 text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
                 Book your golf cart rental today and start your San Pedro adventure. 
                 Free delivery anywhere on the island with advance booking.
               </p>
@@ -296,7 +298,7 @@ const Rentals = () => {
                 <Button size="lg" variant="hero">
                   Call +501-XXX-XXXX
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
                   Book Online
                 </Button>
               </div>
