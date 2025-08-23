@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { MapPin, Clock, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-beach.jpg";
 
@@ -34,9 +35,11 @@ const Hero = () => {
             <Button variant="hero" size="lg" className="text-lg px-8">
               Book Your Ride
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8">
-              Learn More
-            </Button>
+            <Link to="/rentals">
+              <Button variant="outline" size="lg" className="text-lg px-8 w-full sm:w-auto">
+                Rent a Cart
+              </Button>
+            </Link>
           </div>
           
           {/* Quick Features */}
