@@ -81,13 +81,13 @@ const Footer = () => {
             
             <div className="pt-4">
               <h5 className="font-semibold mb-2">Get Early Access</h5>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input 
                   type="email" 
                   placeholder="Your email" 
-                  className="flex-1 px-3 py-2 bg-background border border-border rounded text-sm placeholder:text-muted-foreground"
+                  className="w-full sm:flex-1 px-3 py-2 bg-background border border-border rounded text-sm placeholder:text-muted-foreground"
                 />
-                <Button variant="coral" size="sm">
+                <Button variant="coral" size="sm" className="w-full sm:w-auto">
                   Notify Me
                 </Button>
               </div>
