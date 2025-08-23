@@ -285,12 +285,12 @@ const Rentals = () => {
               alt="Golf carts lined up on a beautiful beach in San Pedro, Belize" 
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div className="relative p-8 md:p-12 text-center text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
                 Ready to Explore Paradise?
               </h2>
-              <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+              <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
                 Book your golf cart rental today and start your San Pedro adventure. 
                 Free delivery anywhere on the island with advance booking.
               </p>
@@ -298,7 +298,7 @@ const Rentals = () => {
                 <Button size="lg" variant="hero">
                   Call +501-XXX-XXXX
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
                   Book Online
                 </Button>
               </div>
