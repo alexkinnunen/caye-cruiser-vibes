@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ctaImage from "@src/assets/golf-carts-on-san-pedro-beach.jpg";
+import ctaImage from "@/assets/golf-carts-on-san-pedro-beach.jpg";
 import { 
   Clock, 
   Users, 
@@ -282,7 +282,7 @@ const Rentals = () => {
           <div className="relative overflow-hidden rounded-3xl">
             <img 
               src={ctaImage} 
-              alt="Golf cart on a beautiful beach" 
+              alt="Golf carts lined up on a beautiful beach in San Pedro, Belize" 
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/50"></div>
