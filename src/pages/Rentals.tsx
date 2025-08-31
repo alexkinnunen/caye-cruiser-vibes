@@ -16,7 +16,8 @@ import {
   Truck,
   ShieldCheck,
   Umbrella,
-  Wrench
+  Wrench,
+  Leaf
 } from "lucide-react";
 
 const Rentals = () => {
