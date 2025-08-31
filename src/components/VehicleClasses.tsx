@@ -107,10 +107,6 @@ const VehicleClasses = () => {
                 </ul>
                 
                 <div className="flex items-center justify-between pt-4 border-t">
-                  <div className="flex items-center gap-1 text-primary font-semibold">
-                    <DollarSign className="w-4 h-4" />
-                    {vehicle.priceRange}
-                  </div>
                  <Button 
                     className="w-full mt-6" 
                     variant={vehicle.badge === "Popular" ? "default" : "outline"}
