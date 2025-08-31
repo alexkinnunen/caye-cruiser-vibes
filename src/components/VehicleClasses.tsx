@@ -113,7 +113,7 @@ const VehicleClasses = () => {
                   </div>
                  <Button 
                     className="w-full mt-6" 
-                    variant={option.popular ? "default" : "outline"}
+                    variant={vehicle.badge === "Popular" ? "default" : "outline"}
                   >
                     Reserve Now
                   </Button>
