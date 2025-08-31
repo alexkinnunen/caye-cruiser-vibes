@@ -1,3 +1,4 @@
+import VehicleClasses from "@/components/VehicleClasses";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -245,6 +246,9 @@ const Rentals = () => {
           </div>
         </div>
       </section>
+
+         {/* Vehicle Classes Section */}
+      <VehicleClasses />
 
       {/* Additional Services */}
       <section className="py-16 bg-muted/50">
