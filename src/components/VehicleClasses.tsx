@@ -111,8 +111,11 @@ const VehicleClasses = () => {
                     <DollarSign className="w-4 h-4" />
                     {vehicle.priceRange}
                   </div>
-                  <Button variant="outline" size="sm" className="text-xs">
-                    Select
+                 <Button 
+                    className="w-full mt-6" 
+                    variant={option.popular ? "default" : "outline"}
+                  >
+                    Reserve Now
                   </Button>
                 </div>
               </CardContent>

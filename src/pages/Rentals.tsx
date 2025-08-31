@@ -249,6 +249,7 @@ const Rentals = () => {
 
          {/* Vehicle Classes Section */}
       <VehicleClasses />
+      
 
       {/* Additional Services */}
       <section className="py-16 bg-muted/50">
