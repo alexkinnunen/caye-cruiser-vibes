@@ -82,7 +82,7 @@ const VehicleClasses = () => {
 >
   <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(/src/assets/golf-carts-on-san-pedro-beach.jpg)` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/20"></div>
       </div>

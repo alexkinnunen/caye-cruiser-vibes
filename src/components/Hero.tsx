@@ -33,7 +33,7 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Button variant="hero" size="lg" className="text-lg px-8">
-              Book Your Ride
+              Request a Ride
             </Button>
             <Link to="/rentals">
               <Button variant="outline" size="lg" className="text-lg px-8 w-full sm:w-auto">
