@@ -44,15 +44,7 @@ const Hero = () => {
           
           {/* Quick Features */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
-              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">Smart Navigation</h3>
-                <p className="text-xs text-muted-foreground">Bumpy road alerts</p>
-              </div>
-            </div>
+         
             
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -71,6 +63,15 @@ const Hero = () => {
               <div>
                 <h3 className="font-semibold text-sm">Local Drivers</h3>
                 <p className="text-xs text-muted-foreground">Trusted & verified</p>
+              </div>
+            </div>
+               <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
+              <div className="w-13 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm">Don't Risk the Rental </h3>
+                <p className="text-xs text-muted-foreground">You Drink, We'll Drive.</p>
               </div>
             </div>
           </div>
