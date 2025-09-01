@@ -1,7 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-// These will be loaded from secrets once your Meta account is ready
 const META_TOKEN = Deno.env.get('META_PERMANENT_TOKEN')
 const META_PHONE_NUMBER_ID = Deno.env.get('META_PHONE_NUMBER_ID')
 const META_VERIFY_TOKEN = Deno.env.get('META_VERIFY_TOKEN')
@@ -11,8 +10,7 @@ serve(async (req) => {
     Deno.env.get('SUPABASE_URL') ?? '',
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
   )
-  
-  // This part handles Meta's one-time verification request
+
   if (req.method === 'GET') {
     const url = new URL(req.url)
     const mode = url.searchParams.get('hub.mode')
@@ -20,58 +18,39 @@ serve(async (req) => {
     const challenge = url.searchParams.get('hub.challenge')
 
     if (mode === 'subscribe' && token === META_VERIFY_TOKEN) {
-      console.log("Webhook verified successfully!");
       return new Response(challenge, { status: 200 })
     } else {
-      console.error("Webhook verification failed.");
-      return new Response('Failed validation. Make sure the validation tokens match.', { status: 403 })
+      return new Response('Failed validation.', { status: 403 })
     }
   }
 
-  // This part handles incoming WhatsApp messages
   if (req.method === 'POST') {
     try {
       const payload = await req.json()
       const message = payload.entry?.[0]?.changes?.[0]?.value?.messages?.[0]
 
       if (!message || message.type !== 'text') {
-        return new Response('ok') // Not a text message
+        return new Response('ok')
       }
-      
-      const from = message.from
-      const body = message.text.body
 
-      // Find an available driver
+      const from = message.from
+      const body = message.text.body.toLowerCase().trim()
+
       const { data: driver } = await supabase
         .from('drivers')
-        .select('*')
-        .eq('is_available', true)
-        .limit(1)
+        .select('id, name')
+        .eq('phone_number', from)
         .single()
 
-      if (!driver) {
-        await sendWhatsAppMessage(from, 'Sorry, all our drivers are currently busy. Please try again in a few minutes.')
-        return new Response('No available drivers')
+      if (driver) {
+        await handleDriverMessage(supabase, driver, body)
+      } else {
+        await handlePassengerMessage(supabase, from, body)
       }
-
-      // Create a ride record
-      await supabase.from('rides').insert({
-        passenger_phone: from,
-        driver_id: driver.id,
-        pickup_location_text: body,
-        status: 'accepted',
-      })
-
-      // Make the driver unavailable
-      await supabase.from('drivers').update({ is_available: false }).eq('id', driver.id)
-
-      // Send confirmations
-      await sendWhatsAppMessage(from, `Ride confirmed! ${driver.name} is on the way.`)
-      await sendWhatsAppMessage(driver.phone_number, `New Ride Request!\nFrom: ${from}\nPickup: ${body}`)
 
       return new Response('ok')
     } catch (error) {
-      console.error('Error processing message:', error)
+      console.error('CRITICAL ERROR processing message:', error)
       return new Response('Error', { status: 500 })
     }
   }
@@ -79,11 +58,99 @@ serve(async (req) => {
   return new Response('Method Not Allowed', { status: 405 })
 })
 
-// Helper function to send messages via Meta's API
+async function handlePassengerMessage(supabase, from, body) {
+  const { data: availableDriver } = await supabase
+    .from('drivers')
+    .select('*')
+    .eq('is_available', true)
+    .limit(1)
+    .single()
+
+  if (!availableDriver) {
+    await sendWhatsAppMessage(from, 'Sorry, all our drivers are currently busy. Please try again in a few minutes.')
+    return
+  }
+
+  await supabase
+    .from('rides')
+    .insert({
+      passenger_phone: from,
+      driver_id: availableDriver.id,
+      pickup_location_text: body,
+      status: 'requested',
+    })
+
+  await supabase
+    .from('drivers')
+    .update({ is_available: false })
+    .eq('id', availableDriver.id)
+
+  await sendWhatsAppMessage(from, `We've found a driver for you! We're just waiting for them to confirm.`)
+  await sendWhatsAppMessage(
+    availableDriver.phone_number,
+    `New Ride Request!\nFrom: ${from}\nPickup: ${body}\n\nReply "accept" to take this ride or "decline" to pass.`
+  )
+}
+
+async function handleDriverMessage(supabase, driver, body) {
+  const { data: ride } = await supabase
+    .from('rides')
+    .select('id, passenger_phone')
+    .eq('driver_id', driver.id)
+    .eq('status', 'requested')
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single()
+  
+  if (!ride) {
+    await sendWhatsAppMessage(driver.phone_number, "Thanks, but you don't have any pending ride requests right now.");
+    return
+  }
+  
+  if (body.includes('accept')) {
+    await supabase
+      .from('rides')
+      .update({ status: 'accepted' })
+      .eq('id', ride.id)
+
+    await sendWhatsAppMessage(driver.phone_number, "Ride accepted! Please proceed to the pickup location.")
+    await sendWhatsAppMessage(ride.passenger_phone, `Your ride is confirmed! ${driver.name} is on the way.`)
+  } else if (body.includes('decline')) {
+    await supabase
+      .from('drivers')
+      .update({ is_available: true })
+      .eq('id', driver.id)
+      
+    await supabase
+      .from('rides')
+      .update({ status: 'cancelled' })
+      .eq('id', ride.id)
+      
+    await sendWhatsAppMessage(driver.phone_number, "Ride declined. We will find another driver.")
+    await sendWhatsAppMessage(ride.passenger_phone, "We're sorry, the driver was unable to take your request. We are looking for another one.")
+  } else if (body.includes('complete')) {
+    await supabase
+      .from('rides')
+      .update({ status: 'completed' })
+      .eq('driver_id', driver.id)
+      .eq('status', 'accepted')
+      
+    await supabase
+      .from('drivers')
+      .update({ is_available: true })
+      .eq('id', driver.id)
+      
+    await sendWhatsAppMessage(driver.phone_number, "Ride marked as complete. You are now available for new requests.")
+    await sendWhatsAppMessage(ride.passenger_phone, "Thanks for riding with us!")
+  } else {
+    await sendWhatsAppMessage(driver.phone_number, 'Sorry, I didn\'t understand that. Please reply with "accept", "decline", or "complete".')
+  }
+}
+
 async function sendWhatsAppMessage(to: string, text: string) {
   const endpoint = `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`
   
-  await fetch(endpoint, {
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${META_TOKEN}`,
@@ -96,4 +163,8 @@ async function sendWhatsAppMessage(to: string, text: string) {
       text: { body: text },
     }),
   })
+  
+  if (!response.ok) {
+    console.error(`Failed to send message to ${to}:`, await response.json())
+  }
 }
