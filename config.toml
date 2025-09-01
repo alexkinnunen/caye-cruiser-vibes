@@ -1,0 +1,13 @@
+# supabase/config.toml
+
+project_id = "ixvhhiendjdusatrjijw"
+
+[api]
+enabled = true
+# You can add more API configurations here if needed
+
+[db]
+# Add any database-specific configurations here if needed
+
+[functions]
+# Add any function-specific configurations here if needed
