@@ -7,54 +7,69 @@ import {
   Leaf, 
   Crown,
   DollarSign,
-  Clock
+  Clock,
+  CheckCircle,
 } from "lucide-react";
 
 const VehicleClasses = () => {
   const vehicles = [
     {
       name: "Eco Caye",
+      type: "Electric",
       icon: <Leaf className="w-8 h-8" />,
       description: "Electric golf carts for short, eco-friendly trips around town",
-      capacity: "2-4 passengers",
+      capacity: "2-6 passengers",
       features: ["Electric & quiet", "Perfect for downtown", "Environmentally friendly"],
-      priceRange: "$4-8",
       color: "from-emerald-500 to-green-400",
       badge: "Eco-Friendly",
-      badgeVariant: "secondary" as const,
+      badgeVariant: "outline" as const,
+      priceRange: "$5 - $10 BZ",
+      topDriver: true,
+
+
     },
     {
       name: "Caye Cruiser",
+      type: "Gas",
       icon: <Car className="w-8 h-8" />,
       description: "Standard 4-seater golf carts for everyday island adventures",
-      capacity: "4 passengers",
+      capacity: "4-6 passengers",
       features: ["Comfortable seating", "All-terrain ready", "Most popular choice"],
-      priceRange: "$6-15",
       color: "from-primary to-primary-glow",
       badge: "Popular",
       badgeVariant: "default" as const,
+      priceRange: "$5 - $10 BZ",
+      topDriver: true,
+
+
     },
     {
       name: "Caye Crew",
+      type: "Gas",
       icon: <Users className="w-8 h-8" />,
       description: "Spacious 6-seater carts perfect for families and groups",
       capacity: "6 passengers",
       features: ["Extra seating", "Family-friendly", "Group adventures"],
-      priceRange: "$10-20",
       color: "from-blue-500 to-cyan-400",
       badge: "Family Size",
-      badgeVariant: "outline" as const,
+      badgeVariant: "secondary" as const,
+      priceRange: "$5 - $10 BZ",
+      topDriver: true
+
     },
     {
       name: "Luxe Cruiser",
+      type: "Gas",
       icon: <Crown className="w-8 h-8" />,
       description: "Premium golf carts with enhanced comfort and amenities",
       capacity: "4 passengers",
-      features: ["Premium comfort", "Cooler with water", "VIP experience"],
-      priceRange: "$15-25",
+      features: ["Premium comfort", "Built in Cooler", "VIP experience"],
       color: "from-accent to-orange-400",
       badge: "Premium",
       badgeVariant: "destructive" as const,
+      priceRange: "$5 - $10 BZ",
+      topDriver: true,
+
     },
   ];
 
@@ -87,34 +102,36 @@ const VehicleClasses = () => {
                 </div>
                 <CardTitle className="text-xl">{vehicle.name}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
-                  {vehicle.description}
+                  <p className="text-sm text-muted-foreground">{vehicle.type} • {vehicle.capacity}</p>
                 </CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Users className="w-4 h-4" />
-                  {vehicle.capacity}
-                </div>
+              <div className="space-y-1 justify-center">
+                    <p className="space-y-4">  {vehicle.description} </p>
+                  </div>
+               
                 
                 <ul className="space-y-2">
                   {vehicle.features.map((feature, idx) => (
                     <li key={idx} className="text-sm flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                
-                <div className="flex items-center justify-between pt-4 border-t">
-                  
-                 <Button 
-                    className="w-full mt-6" 
-                    variant={vehicle.badge === "Popular" ? "default" : "outline"}
-                  >
-                    Reserve Now
+
+  <div className="flex justify-left items-baseline gap-2 mt-4">
+                {vehicle.priceRange}
+                 <p className="text-sm text-muted-foreground">avg. price</p>
+                </div>
+                <div className="flex justify-left pt-4 border-t">
+                  <Button variant={vehicle.topDriver ? "default" : "outline"}>
+                    Message Driver
                   </Button>
                 </div>
+
+              
               </CardContent>
             </Card>
           ))}

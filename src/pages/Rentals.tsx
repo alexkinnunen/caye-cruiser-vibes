@@ -22,28 +22,29 @@ import {
 } from "lucide-react";
 
 const Rentals = () => {
-  const rentalOptions = [
-    {
+  const rentalvehicles = [
+ {
+      color: "from-emerald-500 to-green-400",
+      icon: <Leaf className="w-8 h-8" />,
+      badge: "Eco-Friendly",
       id: "eco-caye",
       name: "Eco Caye",
+      description: "Electric golf carts for short, eco-friendly trips around town",
       type: "Electric",
       capacity: "2-4 People",
-      icon: <Battery className="w-6 h-6" />,
       dailyRate: "$35",
       weeklyRate: "$210",
       monthlyRate: "$750",
       features: [
-        "Silent operation",
         "Eco-friendly",
         "Perfect for in-town trips",
-        "Phone charging port",
-        "Comfortable seating"
+        "Comfortable seating",
       ],
-      range: "25-30 miles",
-      topSpeed: "19 mph",
+      badgeVariant: "secondary" as const,
       popular: false
     },
     {
+      color: "from-primary to-primary-glow",
       id: "caye-cruiser",
       name: "Caye Cruiser",
       type: "Gas-Powered",
@@ -54,16 +55,15 @@ const Rentals = () => {
       monthlyRate: "$950",
       features: [
         "All-terrain capability",
-        "Extended range",
         "Roof and windshield",
         "Storage compartment",
-        "Island-tested reliability"
       ],
       range: "60+ miles",
       topSpeed: "25 mph",
       popular: true
     },
     {
+      color: "from-blue-500 to-cyan-400",
       id: "caye-crew",
       name: "Caye Crew",
       type: "Gas-Powered XL",
@@ -75,8 +75,6 @@ const Rentals = () => {
       features: [
         "Extra seating for families",
         "Large storage area",
-        "All-weather protection",
-        "Premium comfort",
         "Group adventure ready"
       ],
       range: "55+ miles",
@@ -84,6 +82,7 @@ const Rentals = () => {
       popular: false
     },
     {
+    color: "from-accent to-orange-400",
       id: "luxe-cruiser",
       name: "Luxe Cruiser",
       type: "Premium Electric",
@@ -93,11 +92,9 @@ const Rentals = () => {
       weeklyRate: "$550",
       monthlyRate: "$1,800",
       features: [
-        "Premium leather seats",
-        "Bluetooth speakers",
-        "LED lighting package",
-        "Cooler with ice",
-        "Concierge support"
+        "Extra seating for families",
+        "Large storage area",
+        "Group adventure ready"
       ],
       range: "40+ miles",
       topSpeed: "25 mph",
@@ -166,12 +163,12 @@ const Rentals = () => {
         </div>
       </section>
 
-      {/* Rental Options */}
+      {/* Rental vehicles */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Choose Your Adventure
+              Choose Your Cart
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Each cart is maintained to island standards and comes with everything you need for a perfect day of exploration.
@@ -179,54 +176,43 @@ const Rentals = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {rentalOptions.map((option) => (
-              <Card key={option.id} className={`relative ${option.popular ? 'ring-2 ring-primary' : ''}`}>
-                {option.popular && (
+            {rentalvehicles.map((vehicle) => (
+              <Card key={vehicle.id} className={`relative ${vehicle.popular ? 'ring-2 ring-primary' : ''}`}>
+                {vehicle.popular && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
                     Most Popular
                   </Badge>
                 )}
-                
+                <div className={`h-2 bg-gradient-to-r ${vehicle.color}`}></div>
                 <CardHeader className="text-center pb-4">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    {option.icon}
+                    {vehicle.icon}
                   </div>
-                  <CardTitle className="text-xl">{option.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{option.type} • {option.capacity}</p>
+                  <CardTitle className="text-xl">{vehicle.name}</CardTitle>
+                  <p className="text-sm text-muted-foreground">{vehicle.type} • {vehicle.capacity}</p>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
                   <div className="text-center space-y-1">
-                    <div className="text-2xl font-bold text-foreground">{option.dailyRate}</div>
+                    <div className="text-2xl font-bold text-foreground">{vehicle.dailyRate}</div>
                     <div className="text-sm text-muted-foreground">per day</div>
                   </div>
 
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Weekly:</span>
-                      <span className="font-semibold">{option.weeklyRate}</span>
+                      <span className="font-semibold">{vehicle.weeklyRate}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Monthly:</span>
-                      <span className="font-semibold">{option.monthlyRate}</span>
+                      <span className="font-semibold">{vehicle.monthlyRate}</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-border">
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Range:</span>
-                        <span>{option.range}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Top Speed:</span>
-                        <span>{option.topSpeed}</span>
-                      </div>
-                    </div>
-                  </div>
+            
 
                   <div className="space-y-2">
-                    {option.features.map((feature, index) => (
+                    {vehicle.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                         <span className="text-muted-foreground">{feature}</span>
@@ -236,7 +222,7 @@ const Rentals = () => {
 
                   <Button 
                     className="w-full mt-6" 
-                    variant={option.popular ? "default" : "outline"}
+                    variant={vehicle.popular ? "default" : "outline"}
                   >
                     Reserve Now
                   </Button>
@@ -246,9 +232,6 @@ const Rentals = () => {
           </div>
         </div>
       </section>
-
-         {/* Vehicle Classes Section */}
-      <VehicleClasses />
       
 
       {/* Additional Services */}
