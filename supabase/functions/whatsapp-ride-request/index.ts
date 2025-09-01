@@ -7,7 +7,6 @@ type SupabaseAdminClient = SupabaseClient<Database>
 // Define a type for the full driver object based on your schema
 type Driver = Database['public']['Tables']['drivers']['Row']
 
-
 const META_TOKEN = Deno.env.get('META_PERMANENT_TOKEN')
 const META_PHONE_NUMBER_ID = Deno.env.get('META_PHONE_NUMBER_ID')
 const META_VERIFY_TOKEN = Deno.env.get('META_VERIFY_TOKEN')
@@ -19,12 +18,11 @@ serve(async (req) => {
   )
 
   if (req.method === 'GET') {
-    // ... (verification logic is correct)
+    // Webhook verification logic
     const url = new URL(req.url)
     const mode = url.searchParams.get('hub.mode')
     const token = url.searchParams.get('hub.verify_token')
     const challenge = url.searchParams.get('hub.challenge')
-
     if (mode === 'subscribe' && token === META_VERIFY_TOKEN) {
       return new Response(challenge, { status: 200 })
     } else {
@@ -37,24 +35,39 @@ serve(async (req) => {
       const payload = await req.json()
       const message = payload.entry?.[0]?.changes?.[0]?.value?.messages?.[0]
 
-      if (!message || message.type !== 'text') {
+      if (!message) {
         return new Response('ok')
       }
 
       const from = message.from
-      const body = message.text.body.toLowerCase().trim()
 
-      // THE FIX: Select all columns for the driver
+      // Check if the message is from a known driver
       const { data: driver } = await supabase
         .from('drivers')
-        .select('*') // <-- Changed from 'id, name' to '*'
+        .select('*')
         .eq('phone_number', from)
         .single()
 
       if (driver) {
-        await handleDriverMessage(supabase, driver, body)
+        // Handle driver messages (text or location)
+        if (message.type === 'text') {
+          await handleDriverMessage(supabase, driver, message.text.body.toLowerCase().trim())
+        }
+        if (message.type === 'location') {
+          const { latitude, longitude } = message.location
+          await supabase
+            .from('drivers')
+            .update({ last_location: `POINT(${longitude} ${latitude})` })
+            .eq('id', driver.id)
+          await sendWhatsAppMessage(from, "Your location has been updated.")
+        }
       } else {
-        await handlePassengerMessage(supabase, from, body)
+        // Handle passenger messages (must be a location)
+        if (message.type === 'location') {
+          await handlePassengerLocation(supabase, from, message.location)
+        } else {
+          await sendWhatsAppMessage(from, "To request a ride, please share your current location.")
+        }
       }
 
       return new Response('ok')
@@ -67,40 +80,40 @@ serve(async (req) => {
   return new Response('Method Not Allowed', { status: 405 })
 })
 
-async function handlePassengerMessage(supabase: SupabaseAdminClient, from: string, body: string) {
-  const { data: availableDriver } = await supabase
-    .from('drivers')
-    .select('*')
-    .eq('is_available', true)
-    .limit(1)
-    .single()
+// Handles ride requests when a passenger shares their location
+async function handlePassengerLocation(supabase: SupabaseAdminClient, from: string, location: { latitude: number; longitude: number }) {
+  const { latitude, longitude } = location
 
-  if (!availableDriver) {
-    await sendWhatsAppMessage(from, 'Sorry, all our drivers are currently busy. Please try again in a few minutes.')
+  const { data: closestDriverArray, error: findDriverError } = await supabase.rpc('find_closest_driver', {
+    passenger_lat: latitude,
+    passenger_lon: longitude,
+  })
+
+  if (findDriverError || !closestDriverArray || closestDriverArray.length === 0) {
+    await sendWhatsAppMessage(from, 'Sorry, we couldn\'t find any available drivers near you. Please try again later.')
     return
   }
+  
+  const closestDriver = closestDriverArray[0];
 
-  await supabase
-    .from('rides')
-    .insert({
-      passenger_phone: from,
-      driver_id: availableDriver.id,
-      pickup_location_text: body,
-      status: 'requested',
-    })
+  await supabase.from('rides').insert({
+    passenger_phone: from,
+    driver_id: closestDriver.id,
+    status: 'requested',
+    passenger_location: `POINT(${longitude} ${latitude})`
+  })
 
-  await supabase
-    .from('drivers')
-    .update({ is_available: false })
-    .eq('id', availableDriver.id)
+  await supabase.from('drivers').update({ is_available: false }).eq('id', closestDriver.id)
 
-  await sendWhatsAppMessage(from, `We've found a driver for you! We're just waiting for them to confirm.`)
+  const distance = Math.round(closestDriver.dist_meters);
+  await sendWhatsAppMessage(from, `We've found a driver for you! ${closestDriver.name} is approximately ${distance} meters away. We're waiting for confirmation.`)
   await sendWhatsAppMessage(
-    availableDriver.phone_number,
-    `New Ride Request!\nFrom: ${from}\nPickup: ${body}\n\nReply "accept" to take this ride or "decline" to pass.`
+    closestDriver.phone_number,
+    `New Ride Request!\nA passenger is waiting for you approximately ${distance} meters away.\n\nReply "accept" to take this ride or "decline" to pass.`
   )
 }
 
+// Handles replies from registered drivers
 async function handleDriverMessage(supabase: SupabaseAdminClient, driver: Driver, body: string) {
   const { data: ride } = await supabase
     .from('rides')
@@ -110,55 +123,35 @@ async function handleDriverMessage(supabase: SupabaseAdminClient, driver: Driver
     .order('created_at', { ascending: false })
     .limit(1)
     .single()
-  
+
   if (!ride) {
-    await sendWhatsAppMessage(driver.phone_number, "Thanks, but you don't have any pending ride requests right now.");
+    await sendWhatsAppMessage(driver.phone_number, "Thanks, but you don't have any pending ride requests right now.")
     return
   }
-  
-  if (body.includes('accept')) {
-    await supabase
-      .from('rides')
-      .update({ status: 'accepted' })
-      .eq('id', ride.id)
 
+  if (body.includes('accept')) {
+    await supabase.from('rides').update({ status: 'accepted' }).eq('id', ride.id)
     await sendWhatsAppMessage(driver.phone_number, "Ride accepted! Please proceed to the pickup location.")
     await sendWhatsAppMessage(ride.passenger_phone, `Your ride is confirmed! ${driver.name} is on the way.`)
   } else if (body.includes('decline')) {
-    await supabase
-      .from('drivers')
-      .update({ is_available: true })
-      .eq('id', driver.id)
-      
-    await supabase
-      .from('rides')
-      .update({ status: 'cancelled' })
-      .eq('id', ride.id)
-      
-    await sendWhatsAppMessage(driver.phone_number, "Ride declined. We will find another driver.")
-    await sendWhatsAppMessage(ride.passenger_phone, "We're sorry, the driver was unable to take your request. We are looking for another one.")
+    await supabase.from('drivers').update({ is_available: true }).eq('id', driver.id)
+    await supabase.from('rides').update({ status: 'cancelled' }).eq('id', ride.id)
+    await sendWhatsAppMessage(driver.phone_number, "Ride declined. You are now available for other requests.")
+    await sendWhatsAppMessage(ride.passenger_phone, "We're sorry, the driver was unable to take your request. We are looking for another driver.")
+    // Note: Here you could add logic to find the *next* closest driver.
   } else if (body.includes('complete')) {
-    await supabase
-      .from('rides')
-      .update({ status: 'completed' })
-      .eq('driver_id', driver.id)
-      .eq('status', 'accepted')
-      
-    await supabase
-      .from('drivers')
-      .update({ is_available: true })
-      .eq('id', driver.id)
-      
+    await supabase.from('rides').update({ status: 'completed' }).eq('driver_id', driver.id).eq('status', 'accepted')
+    await supabase.from('drivers').update({ is_available: true }).eq('id', driver.id)
     await sendWhatsAppMessage(driver.phone_number, "Ride marked as complete. You are now available for new requests.")
-    await sendWhatsAppMessage(ride.passenger_phone, "Thanks for riding with us!")
+    await sendWhatsAppMessage(ride.passenger_phone, "Thanks for riding with us! We hope you enjoyed your trip.")
   } else {
     await sendWhatsAppMessage(driver.phone_number, 'Sorry, I didn\'t understand that. Please reply with "accept", "decline", or "complete".')
   }
 }
 
+// Helper function to send WhatsApp messages
 async function sendWhatsAppMessage(to: string, text: string) {
   const endpoint = `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`
-  
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -172,7 +165,6 @@ async function sendWhatsAppMessage(to: string, text: string) {
       text: { body: text },
     }),
   })
-  
   if (!response.ok) {
     console.error(`Failed to send message to ${to}:`, await response.json())
   }
