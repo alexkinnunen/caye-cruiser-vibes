@@ -26,8 +26,6 @@ const VehicleClasses = () => {
       badgeVariant: "outline" as const,
       priceRange: "$5 - $10 BZ",
       topDriver: true,
-
-
     },
     {
       name: "Caye Cruiser",
@@ -41,8 +39,6 @@ const VehicleClasses = () => {
       badgeVariant: "default" as const,
       priceRange: "$5 - $10 BZ",
       topDriver:  false, 
-
-
     },
     {
       name: "Caye Crew",
@@ -56,7 +52,6 @@ const VehicleClasses = () => {
       badgeVariant: "secondary" as const,
       priceRange: "$5 - $10 BZ",
       topDriver: false, 
-
     },
     {
       name: "Luxe Cruiser",
@@ -70,24 +65,21 @@ const VehicleClasses = () => {
       badgeVariant: "destructive" as const,
       priceRange: "$5 - $10 BZ",
       topDriver: false, 
-
     },
   ];
 
- // ...existing code...
-  return (
+ return (
 <section
   id="vehicles"
   className="py-20 relative"
 >
-  <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(/src/assets/golf-carts-on-san-pedro-beach.jpg)` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/20"></div>
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(/src/assets/golf-carts-on-san-pedro-beach.jpg)` }}
+  >
+     <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/20"></div>
       </div>
       
-  {/* All content is now above the overlay */}
   <div className="relative z-10 container mx-auto px-4">
     <div className="text-center mb-16">
       <h2 className="text-4xl font-bold mb-4">
@@ -98,13 +90,15 @@ const VehicleClasses = () => {
         golf cart for every adventure on Ambergris Caye.
       </p>
     </div>
-    
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {vehicles.map((vehicle, index) => (
-        <Card key={index} className="group hover:shadow-xl transition-all duration-500 hover:scale-105 border-border/50 overflow-hidden">
+       
+       <Card key={index} className="group hover:shadow-xl transition-all duration-500 hover:scale-105 border-border/50 overflow-hidden">
           <div className={`h-2 bg-gradient-to-r ${vehicle.color}`}></div>
           
           <CardHeader className="text-center">
+           
             <div className="flex justify-between items-start mb-4">
               <div className={`w-16 h-16 bg-gradient-to-r ${vehicle.color} rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>
                 {vehicle.icon}
@@ -113,12 +107,14 @@ const VehicleClasses = () => {
                 {vehicle.badge}
               </Badge>
             </div>
+           
             <CardTitle className="text-xl">{vehicle.name}</CardTitle>
+            
             <CardDescription className="text-sm leading-relaxed">
               <p className="text-sm text-muted-foreground">{vehicle.type} • {vehicle.capacity}</p>
             </CardDescription>
+         
           </CardHeader>
-          
           <CardContent className="space-y-4">
             <div className="space-y-1 justify-center">
               <p className="space-y-4">{vehicle.description}</p>
@@ -131,10 +127,12 @@ const VehicleClasses = () => {
                 </li>
               ))}
             </ul>
+           
             <div className="flex justify-left items-baseline gap-2 mt-4">
               {vehicle.priceRange}
               <p className="text-sm text-muted-foreground">avg. price</p>
             </div>
+           
             <div className="flex justify-left pt-4 border-t">
               <Button variant={vehicle.topDriver ? "coral" : "outline"}>
                 Request Driver
@@ -142,9 +140,11 @@ const VehicleClasses = () => {
             </div>
           </CardContent>
         </Card>
+
       ))}
+   
     </div>
-    
+
     <div className="text-center mt-12">
       <div className="bg-card border rounded-lg p-6 inline-block">
         <div className="flex items-center gap-2 text-primary mb-2">
@@ -156,8 +156,10 @@ const VehicleClasses = () => {
         </p>
       </div>
     </div>
+
   </div>
 </section>
+
   );
 };
 

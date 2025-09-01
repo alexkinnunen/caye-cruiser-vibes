@@ -44,8 +44,6 @@ const Hero = () => {
           
           {/* Quick Features */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-         
-            
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <Clock className="w-5 h-5 text-primary" />
@@ -55,7 +53,6 @@ const Hero = () => {
                 <p className="text-xs text-muted-foreground">Flexible scheduling</p>
               </div>
             </div>
-            
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <Shield className="w-5 h-5 text-primary" />
