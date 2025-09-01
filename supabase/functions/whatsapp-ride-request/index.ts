@@ -1,17 +1,25 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient, SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { type Database } from '../../../src/database.types.ts'
+
+// Define a fully typed Supabase client
+type SupabaseAdminClient = SupabaseClient<Database>
+// Define a type for the full driver object based on your schema
+type Driver = Database['public']['Tables']['drivers']['Row']
+
 
 const META_TOKEN = Deno.env.get('META_PERMANENT_TOKEN')
 const META_PHONE_NUMBER_ID = Deno.env.get('META_PHONE_NUMBER_ID')
 const META_VERIFY_TOKEN = Deno.env.get('META_VERIFY_TOKEN')
 
 serve(async (req) => {
-  const supabase = createClient(
+  const supabase = createClient<Database>(
     Deno.env.get('SUPABASE_URL') ?? '',
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
   )
 
   if (req.method === 'GET') {
+    // ... (verification logic is correct)
     const url = new URL(req.url)
     const mode = url.searchParams.get('hub.mode')
     const token = url.searchParams.get('hub.verify_token')
@@ -36,9 +44,10 @@ serve(async (req) => {
       const from = message.from
       const body = message.text.body.toLowerCase().trim()
 
+      // THE FIX: Select all columns for the driver
       const { data: driver } = await supabase
         .from('drivers')
-        .select('id, name')
+        .select('*') // <-- Changed from 'id, name' to '*'
         .eq('phone_number', from)
         .single()
 
@@ -58,7 +67,7 @@ serve(async (req) => {
   return new Response('Method Not Allowed', { status: 405 })
 })
 
-async function handlePassengerMessage(supabase, from, body) {
+async function handlePassengerMessage(supabase: SupabaseAdminClient, from: string, body: string) {
   const { data: availableDriver } = await supabase
     .from('drivers')
     .select('*')
@@ -92,7 +101,7 @@ async function handlePassengerMessage(supabase, from, body) {
   )
 }
 
-async function handleDriverMessage(supabase, driver, body) {
+async function handleDriverMessage(supabase: SupabaseAdminClient, driver: Driver, body: string) {
   const { data: ride } = await supabase
     .from('rides')
     .select('id, passenger_phone')
