@@ -49,6 +49,8 @@ export default {
         },
         "wine-red": "hsl(var(--wine-red))",
         "deep-purple": "hsl(var(--deep-purple))",
+        "med-purple": "hsl(var(--med-purple))",
+        green: "hsl(var(--green))",
       },
       borderRadius: {
         lg: "var(--radius)",

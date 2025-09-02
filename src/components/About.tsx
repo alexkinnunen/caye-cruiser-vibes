@@ -1,29 +1,27 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  Heart, 
-  Shield, 
-  Users, 
-  MapPin,
-  Phone,
-  Mail
-} from "lucide-react";
+import { Heart, Shield, Users, MapPin, Phone, Mail } from "lucide-react";
 
 const About = () => {
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-right mb-16">
           <h2 className="text-4xl font-bold mb-4">
             <span className="text-primary">For the Island,</span> By the Island
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Caye Cruiser isn't just another app – we're part of the San Pedro community. 
-            Built to support local drivers, empower island businesses, and enhance the 
-            Caribbean experience for everyone.
+          <p className="text-xl text-muted-foreground text-right">
+            Built to support local drivers, empower island businesses, and
+            enhance the Caribbean experience for everyone.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-8">
             <div className="flex gap-4">
@@ -33,12 +31,13 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Community First</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  We partner with local taxi drivers and independent cart owners, creating 
-                  economic opportunities while preserving the authentic San Pedro experience.
+                  We partner with local taxi drivers and independent cart
+                  owners, creating economic opportunities while preserving the
+                  authentic San Pedro experience.
                 </p>
               </div>
             </div>
-            
+
             <div className="flex gap-4">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Shield className="w-6 h-6 text-primary" />
@@ -46,12 +45,13 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Safety & Trust</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  All our drivers are verified locals with extensive island knowledge. 
-                  Every trip includes real-time tracking and 24/7 support.
+                  All our drivers are verified locals with extensive island
+                  knowledge. Every trip includes real-time tracking and 24/7
+                  support.
                 </p>
               </div>
             </div>
-            
+
             <div className="flex gap-4">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Users className="w-6 h-6 text-primary" />
@@ -59,34 +59,59 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Island Expertise</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our drivers aren't just transportation – they're your connection to authentic 
-                  Belize. Ask about the best fishing spots, hidden beaches, or local favorites.
+                  Our drivers aren't just transportation – they're your
+                  connection to authentic Belize. Ask about the best fishing
+                  spots, hidden beaches, or local favorites.
                 </p>
               </div>
             </div>
           </div>
-          
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Caye Cruiser?</h3>
-            
-            <div className="space-y-4">
-             
-              <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>No negotiating fares – transparent pricing always</span>
+          <div className="space-y-8">
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Heart className="w-6 h-6 text-primary" />
               </div>
-              <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>Support local families and businesses</span>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Transparent Pricing
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We partner with local taxi drivers and independent cart
+                  owners, creating economic opportunities while preserving the
+                  authentic San Pedro experience.
+                </p>
               </div>
-              <div className="flex items-center gap-3 bg-background/80 p-4 rounded-lg">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span>Cashless payments + cash options available</span>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Local Knowledge</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  All our drivers are verified locals with extensive island
+                  knowledge. Every trip supports a local business or family.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Users className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Island Expertise</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our drivers aren't just transportation – they're your
+                  connection to authentic Belize. Ask about the best fishing
+                  spots, hidden beaches, or local favorites.
+                </p>
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* Contact Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className="text-center hover:shadow-lg transition-all duration-300">
@@ -104,7 +129,7 @@ const About = () => {
               </CardDescription>
             </CardContent>
           </Card>
-          
+
           <Card className="text-center hover:shadow-lg transition-all duration-300">
             <CardHeader>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
@@ -120,7 +145,7 @@ const About = () => {
               </CardDescription>
             </CardContent>
           </Card>
-          
+
           <Card className="text-center hover:shadow-lg transition-all duration-300">
             <CardHeader>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">

@@ -1,16 +1,8 @@
-import heroImage from "@/assets/hero-beach.jpg";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Car, 
-  Users, 
-  Leaf, 
-  Crown,
-  DollarSign,
-  Clock,
-  CheckCircle,
-} from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Car, Users, Leaf, Crown, CheckCircle } from "lucide-react";
 
 const VehicleClasses = () => {
   const vehicles = [
@@ -18,148 +10,134 @@ const VehicleClasses = () => {
       name: "Eco Caye",
       type: "Electric",
       icon: <Leaf className="w-8 h-8" />,
-      description: "Electric golf carts for short, eco-friendly trips around town",
-      capacity: "2-6 passengers",
-      features: ["Electric & quiet", "Perfect for downtown", "Environmentally friendly"],
-      color: "from-emerald-500 to-green-400",
-      badge: "Eco-Friendly",
-      badgeVariant: "outline" as const,
-      priceRange: "$5 - $10 BZ",
-      topDriver: true,
+      description: "Quiet, eco-friendly rides perfect for exploring town.",
+      capacity: "2-4 passengers",
+      features: ["Electric & Quiet", "Perfect for Downtown", "Eco-Friendly"],
+      color: "text-secondary", // Teal/Green
+      imagePlaceholderColor: "bg-secondary/10",
     },
     {
       name: "Caye Cruiser",
       type: "Gas",
       icon: <Car className="w-8 h-8" />,
-      description: "Standard 4-seater golf carts for everyday island adventures",
+      description: "The perfect all-rounder for any island adventure.",
       capacity: "4-6 passengers",
-      features: ["Comfortable seating", "All-terrain ready", "Most popular choice"],
-      color: "from-primary to-primary-glow",
-      badge: "Popular",
-      badgeVariant: "default" as const,
-      priceRange: "$5 - $10 BZ",
-      topDriver:  false, 
+      features: [
+        "Comfortable Seating",
+        "All-Terrain Ready",
+        "Most Popular Choice",
+      ],
+      color: "text-primary", // Coral Orange
+      imagePlaceholderColor: "bg-primary/10",
     },
     {
       name: "Caye Crew",
       type: "Gas",
       icon: <Users className="w-8 h-8" />,
-      description: "Spacious 6-seater carts perfect for families and groups",
+      description: "Spacious 6-seater carts for families and groups.",
       capacity: "6 passengers",
-      features: ["Extra seating", "Family-friendly", "Group adventures"],
-      color: "from-blue-500 to-cyan-400",
-      badge: "Family Size",
-      badgeVariant: "secondary" as const,
-      priceRange: "$5 - $10 BZ",
-      topDriver: false, 
+      features: ["Extra Seating", "Family-Friendly", "Group Adventures"],
+      color: "text-accent-dark", // Deep Green
+      imagePlaceholderColor: "bg-accent-dark/10",
     },
     {
       name: "Luxe Cruiser",
       type: "Gas",
       icon: <Crown className="w-8 h-8" />,
-      description: "Premium golf carts with enhanced comfort and amenities",
+      description: "Premium carts with enhanced comfort and amenities.",
       capacity: "4 passengers",
-      features: ["Premium comfort", "Built in Cooler", "VIP experience"],
-      color: "from-accent to-orange-400",
-      badge: "Premium",
-      badgeVariant: "destructive" as const,
-      priceRange: "$5 - $10 BZ",
-      topDriver: false, 
+      features: ["Premium Comfort", "Built-in Cooler", "VIP Experience"],
+      color: "text-accent", // Peachy/Yellow
+      imagePlaceholderColor: "bg-accent/20",
     },
   ];
 
- return (
-<section
-  id="vehicles"
-  className="py-20 relative"
->
-  <div
-    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(/src/assets/golf-carts-on-san-pedro-beach.jpg)` }}
-  >
-     <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/20"></div>
-      </div>
-      
-  <div className="relative z-10 container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold mb-4">
-        Choose Your <span className="text-primary">Island Ride</span>
-      </h2>
-      <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-        From eco-friendly electric carts to luxury cruisers, we have the perfect 
-        golf cart for every adventure on Ambergris Caye.
-      </p>
-    </div>
-  
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {vehicles.map((vehicle, index) => (
-       
-       <Card key={index} className="group hover:shadow-xl transition-all duration-500 hover:scale-105 border-border/50 overflow-hidden">
-          <div className={`h-2 bg-gradient-to-r ${vehicle.color}`}></div>
-          
-          <CardHeader className="text-center">
-           
-            <div className="flex justify-between items-start mb-4">
-              <div className={`w-16 h-16 bg-gradient-to-r ${vehicle.color} rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>
-                {vehicle.icon}
-              </div>
-              <Badge variant={vehicle.badgeVariant} className="text-xs">
-                {vehicle.badge}
-              </Badge>
-            </div>
-           
-            <CardTitle className="text-xl">{vehicle.name}</CardTitle>
-            
-            <CardDescription className="text-sm leading-relaxed">
-              <p className="text-sm text-muted-foreground">{vehicle.type} • {vehicle.capacity}</p>
-            </CardDescription>
-         
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-1 justify-center">
-              <p className="space-y-4">{vehicle.description}</p>
-            </div>
-            <ul className="space-y-2">
-              {vehicle.features.map((feature, idx) => (
-                <li key={idx} className="text-sm flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-           
-            <div className="flex justify-left items-baseline gap-2 mt-4">
-              {vehicle.priceRange}
-              <p className="text-sm text-muted-foreground">avg. price</p>
-            </div>
-           
-            <div className="flex justify-left pt-4 border-t">
-              <Button variant={vehicle.topDriver ? "coral" : "outline"}>
-                Request Driver
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-      ))}
-   
-    </div>
-
-    <div className="text-center mt-12">
-      <div className="bg-card border rounded-lg p-6 inline-block">
-        <div className="flex items-center gap-2 text-primary mb-2">
-          <Clock className="w-5 h-5" />
-          <span className="font-semibold">Hourly & Daily Packages Available</span>
+  return (
+    <section id="vehicles" className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 font-serif">
+            Choose Your <span className="text-primary">Island Ride</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            From eco-friendly electric carts to luxury cruisers, we have the
+            perfect golf cart for every adventure on Ambergris Caye.
+          </p>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Need a cart for longer? Ask about our 4-hour, 8-hour, and full-day packages with driver included.
-        </p>
+
+        <Tabs defaultValue="Caye Cruiser" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto mb-8">
+            {vehicles.map((vehicle) => (
+              <TabsTrigger
+                key={vehicle.name}
+                value={vehicle.name}
+                className="py-3 text-base"
+              >
+                {vehicle.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {vehicles.map((vehicle) => (
+            <TabsContent
+              key={vehicle.name}
+              value={vehicle.name}
+              className="animate-fade-in-up"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                {/* Image Placeholder */}
+                <div
+                  className={`aspect-video rounded-lg ${vehicle.imagePlaceholderColor} flex items-center justify-center`}
+                >
+                  <div className={`w-32 h-32 ${vehicle.color}`}>
+                    {vehicle.icon}
+                  </div>
+                </div>
+
+                {/* Vehicle Details */}
+                <div>
+                  <Badge
+                    variant="secondary"
+                    className={`mb-4 ${
+                      vehicle.color === "text-primary" ? "bg-primary" : ""
+                    } ${
+                      vehicle.color === "text-secondary" ? "bg-secondary" : ""
+                    } ${vehicle.color === "text-accent" ? "bg-accent" : ""} ${
+                      vehicle.color === "text-accent-dark"
+                        ? "bg-accent-dark"
+                        : ""
+                    } text-white`}
+                  >
+                    {vehicle.type}
+                  </Badge>
+                  <h3
+                    className={`text-3xl font-bold font-serif ${vehicle.color}`}
+                  >
+                    {vehicle.name}
+                  </h3>
+                  <p className="text-lg text-muted-foreground mt-2 mb-6">
+                    {vehicle.description}
+                  </p>
+
+                  <ul className="space-y-3 mb-8">
+                    {vehicle.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
+                        <CheckCircle className={`w-5 h-5 ${vehicle.color}`} />
+                        <span className="text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button variant="default" size="lg" className="text-lg">
+                    Request a {vehicle.name}
+                  </Button>
+                </div>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
-    </div>
-
-  </div>
-</section>
-
+    </section>
   );
 };
 

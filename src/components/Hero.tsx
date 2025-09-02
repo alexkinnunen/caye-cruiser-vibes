@@ -4,7 +4,7 @@ import { MapPin, Clock, Shield } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-primary text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-22">
+    <section className="bg-primary text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-24">
       {/* Content */}
       <div className="container mx-auto px-4 text-center md:text-left">
         <div className="max-w-2xl mx-auto md:mx-0">

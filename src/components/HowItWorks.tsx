@@ -24,7 +24,7 @@ const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 pt-4 pb-4">
         <div className="text-right mb-16">
           <h2 className="text-4xl font-bold mb-4 font-serif">How It Works</h2>
           <p className="text-xl text-muted-foreground text-right">
