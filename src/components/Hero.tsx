@@ -4,24 +4,22 @@ import { MapPin, Clock, Shield } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center bg-background">
-      {/* The background image div has been removed */}
-
+    <section className="bg-background pt-28 pb-16 md:pt-32 md:pb-24">
       {/* Content */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-gray-800 font-serif">
+      <div className="container mx-auto px-4 text-center md:text-left">
+        <div className="max-w-2xl mx-auto md:mx-0">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight text-gray-800 font-serif">
             Island Rides,
             <br />
             <span className="text-primary">Instantly.</span>
           </h1>
 
-          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
             Your on-demand golf cart is just a WhatsApp message away. Explore
             San Pedro with the tap of a button.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 mb-10 justify-center md:justify-start">
             <a
               href="https://wa.me/5016252086"
               target="_blank"
