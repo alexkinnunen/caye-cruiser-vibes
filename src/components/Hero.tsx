@@ -1,21 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { MapPin, Clock, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-beach.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent"></div>
-      </div>
+    <section className="min-h-screen flex items-center bg-background">
+      {/* The background image div has been removed */}
 
       {/* Content */}
-      <div className="relative container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-20">
         <div className="max-w-2xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-gray-800 font-serif">
             Island Rides,
@@ -51,7 +44,7 @@ const Hero = () => {
 
           {/* Quick Features */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
+            <div className="flex items-center gap-3 bg-card p-4 rounded-lg">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
@@ -62,7 +55,7 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
+            <div className="flex items-center gap-3 bg-card p-4 rounded-lg">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <Shield className="w-5 h-5 text-primary" />
               </div>
@@ -73,7 +66,7 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
+            <div className="flex items-center gap-3 bg-card p-4 rounded-lg">
               <div className="w-13 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
