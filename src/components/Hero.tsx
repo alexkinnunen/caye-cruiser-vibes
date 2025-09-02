@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-beach.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -17,17 +17,15 @@ const Hero = () => {
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Your On-Demand Golf Cart Ride is a{" "}
-            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
-              WhatsApp
-            </span>{" "}
-            Message Away
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-gray-800 font-serif">
+            Island Rides,
+            <br />
+            <span className="text-primary">Instantly.</span>
           </h1>
 
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            Explore San Pedro with our on-demand golf cart service. No need to
-            rent a cart for the whole day, just message us when you need a ride.
+            Your on-demand golf cart is just a WhatsApp message away. Explore
+            San Pedro with the tap of a button.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -37,7 +35,7 @@ const Hero = () => {
               rel="noopener noreferrer"
             >
               <Button variant="hero" size="lg" className="text-lg px-8">
-                Request a Ride on WhatsApp
+                Request a Ride
               </Button>
             </a>
             <Link to="/rentals">
@@ -46,7 +44,7 @@ const Hero = () => {
                 size="lg"
                 className="text-lg px-8 w-full sm:w-auto"
               >
-                Or Rent a Cart for the Day
+                Daily Rentals
               </Button>
             </Link>
           </div>
@@ -58,9 +56,9 @@ const Hero = () => {
                 <Clock className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Island Time</h3>
+                <h3 className="font-semibold text-sm">On-Demand</h3>
                 <p className="text-xs text-muted-foreground">
-                  Flexible scheduling
+                  No need to book in advance
                 </p>
               </div>
             </div>
@@ -69,9 +67,9 @@ const Hero = () => {
                 <Shield className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Local Drivers</h3>
+                <h3 className="font-semibold text-sm">Trusted Locals</h3>
                 <p className="text-xs text-muted-foreground">
-                  Trusted & verified
+                  Safe and reliable drivers
                 </p>
               </div>
             </div>
@@ -80,9 +78,9 @@ const Hero = () => {
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Don't Risk the Rental</h3>
+                <h3 className="font-semibold text-sm">You Drink, We Drive</h3>
                 <p className="text-xs text-muted-foreground">
-                  You Drink, We'll Drive.
+                  Don't risk the rental
                 </p>
               </div>
             </div>
