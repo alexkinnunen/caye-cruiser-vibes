@@ -6,67 +6,67 @@
 
 @layer base {
   :root {
-    /* -- New Coral Reef Color Palette with Green Accent -- */
-    --background: 200 80% 15%; /* Deep ocean blue */
-    --foreground: 195 100% 85%; /* Light blue for text */
+    /* -- New Coral Reef Color Palette with White Background -- */
+    --background: 0 0% 100%; /* White background */
+    --foreground: 20 14.3% 4.1%; /* Dark text for readability */
 
-    --card: 200 80% 20%;
-    --card-foreground: 195 100% 90%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
 
-    --popover: 200 80% 25%;
-    --popover-foreground: 195 100% 90%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
 
-    --primary: 15 95% 55%; /* Vibrant coral orange/red */
+    --primary: 19 97% 59%; /* Vibrant coral orange */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 85% 45%; /* <-- Vibrant Teal/Green Accent Added Here */
+    --secondary: 170 85% 45%; /* Vibrant Teal/Green Accent */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 200 60% 30%;
-    --muted-foreground: 195 70% 70%;
+    --muted: 210 40% 96.1%; /* Light gray for muted backgrounds */
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 30 100% 65%; /* Bright orange/yellow for highlights */
-    --accent-foreground: 200 80% 10%;
+    --accent: 31 100% 83%; /* Light peachy accent */
+    --accent-foreground: 24 9.8% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 50% 40%;
-    --input: 200 50% 40%;
-    --ring: 15 95% 55%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 19 97% 59%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* The dark theme will also use the new color palette */
-    --background: 200 80% 15%;
-    --foreground: 195 100% 85%;
+    /* A slightly off-black for dark mode, keeping the vibrant accents */
+    --background: 20 14.3% 4.1%;
+    --foreground: 210 40% 98%;
 
-    --card: 200 80% 20%;
-    --card-foreground: 195 100% 90%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 200 80% 25%;
-    --popover-foreground: 195 100% 90%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 15 95% 55%;
+    --primary: 19 97% 59%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 85% 45%; /* <-- Vibrant Teal/Green Accent Added Here */
+    --secondary: 170 85% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 200 60% 30%;
-    --muted-foreground: 195 70% 70%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
 
-    --accent: 30 100% 65%;
-    --accent-foreground: 200 80% 10%;
+    --accent: 31 100% 83%;
+    --accent-foreground: 24 9.8% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 200 50% 40%;
-    --input: 200 50% 40%;
-    --ring: 15 95% 55%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 19 97% 59%;
   }
 }
 
