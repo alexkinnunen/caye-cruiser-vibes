@@ -4,6 +4,7 @@ import Features from "@/components/Features";
 import VehicleClasses from "@/components/VehicleClasses";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
+import HowItWorks from "@/components/HowItWorks";
 
 const Index = () => {
   return (
@@ -11,6 +12,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <HowItWorks />
         <Features />
         <VehicleClasses />
         <About />

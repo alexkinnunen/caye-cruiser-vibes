@@ -7,41 +7,50 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent"></div>
       </div>
-      
+
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20">
         <div className="max-w-2xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Your Island
-            <span className="block text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
-              Adventure
-            </span>
-            Awaits
+            Your On-Demand Golf Cart Ride is a{" "}
+            <span className="text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
+              WhatsApp
+            </span>{" "}
+            Message Away
           </h1>
-          
+
           <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-            Experience the perfect blend of island relaxation and efficient transport. 
-            Explore San Pedro, Ambergris Caye with our on-demand golf cart service – 
-            designed for the Caribbean way of life.
+            Explore San Pedro with our on-demand golf cart service. No need to
+            rent a cart for the whole day, just message us when you need a ride.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button variant="hero" size="lg" className="text-lg px-8">
-              Request a Ride
-            </Button>
+            <a
+              href="https://wa.me/5016252086"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="hero" size="lg" className="text-lg px-8">
+                Request a Ride on WhatsApp
+              </Button>
+            </a>
             <Link to="/rentals">
-              <Button variant="outline" size="lg" className="text-lg px-8 w-full sm:w-auto">
-                Rent a Cart
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-lg px-8 w-full sm:w-auto"
+              >
+                Or Rent a Cart for the Day
               </Button>
             </Link>
           </div>
-          
+
           {/* Quick Features */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
@@ -50,7 +59,9 @@ const Hero = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-sm">Island Time</h3>
-                <p className="text-xs text-muted-foreground">Flexible scheduling</p>
+                <p className="text-xs text-muted-foreground">
+                  Flexible scheduling
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
@@ -59,16 +70,20 @@ const Hero = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-sm">Local Drivers</h3>
-                <p className="text-xs text-muted-foreground">Trusted & verified</p>
+                <p className="text-xs text-muted-foreground">
+                  Trusted & verified
+                </p>
               </div>
             </div>
-               <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
+            <div className="flex items-center gap-3 bg-card/80 backdrop-blur-sm p-4 rounded-lg">
               <div className="w-13 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm">Don't Risk the Rental </h3>
-                <p className="text-xs text-muted-foreground">You Drink, We'll Drive.</p>
+                <h3 className="font-semibold text-sm">Don't Risk the Rental</h3>
+                <p className="text-xs text-muted-foreground">
+                  You Drink, We'll Drive.
+                </p>
               </div>
             </div>
           </div>
