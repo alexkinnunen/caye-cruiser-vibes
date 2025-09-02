@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, Car, Star } from "lucide-react";
 
 const HowItWorks = () => {
@@ -26,25 +25,32 @@ const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">How It Works</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-right mb-16">
+          <h2 className="text-4xl font-bold mb-4 font-serif">How It Works</h2>
+          <p className="text-xl text-muted-foreground text-right">
             Getting a ride with Caye Cruiser is as easy as sending a text.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {steps.map((step, index) => (
-            <Card key={index} className="text-center">
-              <CardHeader>
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+            <div
+              key={index}
+              className="relative text-right opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${index * 200}ms` }}
+            >
+              <div className="flex items-center justify-end gap-4 mb-4">
+                <h3 className="text-6xl font-bold text-primary/20">
+                  0{index + 1}
+                </h3>
+                <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                   {step.icon}
                 </div>
-                <CardTitle>{step.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{step.description}</p>
-              </CardContent>
-            </Card>
+              </div>
+              <h4 className="text-2xl font-semibold mb-2 font-serif">
+                {step.title}
+              </h4>
+              <p className="text-muted-foreground">{step.description}</p>
+            </div>
           ))}
         </div>
       </div>

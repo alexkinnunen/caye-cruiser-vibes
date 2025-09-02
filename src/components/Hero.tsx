@@ -4,7 +4,7 @@ import { MapPin, Clock, Shield } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-primary text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-24">
+    <section className="bg-primary text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-22">
       {/* Content */}
       <div className="container mx-auto px-4 text-center md:text-left">
         <div className="max-w-2xl mx-auto md:mx-0">
@@ -25,17 +25,21 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="secondary" size="lg" className="text-lg px-8">
+              <Button
+                variant="hero"
+                size="lg"
+                className="text-lg px-8 text-deep-purple"
+              >
                 Request a Ride
               </Button>
             </a>
             <Link to="/rentals">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="text-lg px-8 w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary"
+                className="text-lg px-8 text-coral-green"
               >
-                Daily Rentals
+                Rentals
               </Button>
             </Link>
           </div>
@@ -72,10 +76,10 @@ const Hero = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-sm text-white">
-                  You Drink, We Drive
+                  Don't risk the rental
                 </h3>
                 <p className="text-xs text-primary-foreground/80">
-                  Don't risk the rental
+                  You Drink, We Drive
                 </p>
               </div>
             </div>

@@ -27,6 +27,7 @@
 
     --accent: 31 100% 83%; /* Light peachy accent */
     --accent-foreground: 24 9.8% 10%;
+    --accent-dark: 62 84% 7%; /* Dark green for text on accent */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -36,6 +37,11 @@
     --ring: 19 97% 59%;
 
     --radius: 0.5rem;
+
+    /* -- Newly Added Colors -- */
+    --wine-red: 355 100% 20%;
+    --deep-purple: 274 35% 13%;
+    --coral-green: 169, 30%, 11%;
   }
 
   .dark {
@@ -60,6 +66,7 @@
 
     --accent: 31 100% 83%;
     --accent-foreground: 24 9.8% 10%;
+    --accent-dark: 62 84% 7%; /* Dark green for text on accent */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -67,6 +74,10 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 19 97% 59%;
+
+    /* -- Newly Added Colors -- */
+    --wine-red: 355 100% 20%;
+    --deep-purple: 274 35% 13%;
   }
 }
 
