@@ -1,3 +1,4 @@
+// supabase/functions/whatsapp-ride-requests/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import {
   createClient,
@@ -13,63 +14,65 @@ const META_PHONE_NUMBER_ID = Deno.env.get("META_PHONE_NUMBER_ID");
 const META_VERIFY_TOKEN = Deno.env.get("META_VERIFY_TOKEN");
 
 serve(async (req) => {
+  if (req.method === "GET") {
+    return handleVerification(req);
+  }
+
+  if (req.method === "POST") {
+    return handleWebhook(req);
+  }
+
+  return new Response("Method Not Allowed", { status: 405 });
+});
+
+const handleVerification = (req: Request) => {
+  const url = new URL(req.url);
+  const mode = url.searchParams.get("hub.mode");
+  const token = url.searchParams.get("hub.verify_token");
+  const challenge = url.searchParams.get("hub.challenge");
+
+  if (mode === "subscribe" && token === META_VERIFY_TOKEN) {
+    return new Response(challenge, { status: 200 });
+  } else {
+    return new Response("Failed validation.", { status: 403 });
+  }
+};
+
+const handleWebhook = async (req: Request) => {
   const supabase = createClient<Database>(
     Deno.env.get("SUPABASE_URL") ?? "",
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
   );
 
-  if (req.method === "GET") {
-    const url = new URL(req.url);
-    const mode = url.searchParams.get("hub.mode");
-    const token = url.searchParams.get("hub.verify_token");
-    const challenge = url.searchParams.get("hub.challenge");
-    if (mode === "subscribe" && token === META_VERIFY_TOKEN) {
-      return new Response(challenge, { status: 200 });
-    } else {
-      return new Response("Failed validation.", { status: 403 });
-    }
-  }
+  try {
+    const payload = await req.json();
+    const message = payload.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
-  if (req.method === "POST") {
-    try {
-      const payload = await req.json();
-      const message = payload.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
-
-      if (!message) {
-        return new Response("ok");
-      }
-
-      const from = message.from;
-
-      const { data: driver } = await supabase
-        .from("drivers")
-        .select("*")
-        .eq("phone_number", from)
-        .single();
-
-      if (driver) {
-        if (message.type === "text") {
-          await handleDriverMessage(
-            supabase,
-            driver,
-            message.text.body.toLowerCase().trim()
-          );
-        }
-      } else {
-        if (message.type === "text") {
-          await handlePassengerMessage(supabase, from, message.text.body);
-        }
-      }
-
+    if (!message) {
       return new Response("ok");
-    } catch (error) {
-      console.error("CRITICAL ERROR processing message:", error);
-      return new Response("Error", { status: 500 });
     }
-  }
 
-  return new Response("Method Not Allowed", { status: 405 });
-});
+    const from = message.from;
+    const messageBody = message.text.body.toLowerCase().trim();
+
+    const { data: driver } = await supabase
+      .from("drivers")
+      .select("*")
+      .eq("phone_number", from)
+      .single();
+
+    if (driver) {
+      await handleDriverMessage(supabase, driver, messageBody);
+    } else {
+      await handlePassengerMessage(supabase, from, messageBody);
+    }
+
+    return new Response("ok");
+  } catch (error) {
+    console.error("CRITICAL ERROR processing message:", error);
+    return new Response("Error", { status: 500 });
+  }
+};
 
 async function handlePassengerMessage(
   supabase: SupabaseAdminClient,

@@ -4,6 +4,7 @@ CREATE TABLE public.drivers (
   name TEXT NOT NULL,
   phone_number TEXT NOT NULL UNIQUE,
   is_available BOOLEAN NOT NULL DEFAULT true,
+  last_location GEOMETRY(Point, 4326), -- Using PostGIS for location
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -13,9 +14,11 @@ CREATE TYPE ride_status AS ENUM ('requested', 'accepted', 'in_progress', 'comple
 -- Create a table for ride requests
 CREATE TABLE public.rides (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  passenger_id UUID, -- Can be nullable if you allow guest rides
   passenger_phone TEXT NOT NULL,
   driver_id UUID REFERENCES public.drivers(id),
   status ride_status NOT NULL DEFAULT 'requested',
   pickup_location_text TEXT,
+  passenger_location GEOMETRY(Point, 4326), -- Using PostGIS for location
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
