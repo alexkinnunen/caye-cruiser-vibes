@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Heart, Shield, Users, MapPin, Phone, Mail } from "lucide-react";
 
 const About = () => {
