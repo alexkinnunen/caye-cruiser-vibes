@@ -4,16 +4,15 @@ import Features from "@/components/Features";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import HowItWorks from "@/components/HowItWorks";
-import InteractiveMap from "@/components/InteractiveMap"; // Import the new map component
-
+import InteractiveMap from "@/components/InteractiveMap";
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
         <Hero />
+        <InteractiveMap />
         <HowItWorks />
-        <InteractiveMap /> {/* Use the InteractiveMap component here */}
         <Features />
         <About />
       </main>
