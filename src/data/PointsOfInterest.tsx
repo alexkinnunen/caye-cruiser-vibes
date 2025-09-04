@@ -6,7 +6,7 @@ export interface PointOfInterest {
   image: string; // Path to a new image in your assets folder
 }
 
-export const pointsOfInterest: PointOfInterest[] = [
+export const PointsOfInterest: PointOfInterest[] = [
   {
     id: "secret-beach",
     title: "Secret Beach",

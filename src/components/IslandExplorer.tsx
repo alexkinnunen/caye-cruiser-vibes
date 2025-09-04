@@ -8,7 +8,7 @@ import {
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { pointsOfInterest } from "@/data/PointsOfInterest"; // Import your data
+import { PointsOfInterest } from "@/data/PointsOfInterest"; // Import your data
 
 const IslandExplorer = () => {
   const WHATSAPP_NUMBER = "5016252086"; // Centralize your number
@@ -42,7 +42,7 @@ const IslandExplorer = () => {
           className="w-full max-w-4xl mx-auto"
         >
           <CarouselContent>
-            {pointsOfInterest.map((poi) => (
+            {PointsOfInterest.map((poi) => (
               <CarouselItem key={poi.id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card className="overflow-hidden h-full flex flex-col">
