@@ -54,10 +54,7 @@ const ExploreAndFeatures = () => {
   ];
 
   return (
-    <section
-      id="explore"
-      className="py-20 relative overflow-hidden bg-muted/50"
-    >
+    <section id="explore" className="py-7 relative overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute -top-1/4 -left-20 w-1/2 h-full bg-[url('/src/assets/swirled-wave.svg')] bg-no-repeat opacity-10"
@@ -66,28 +63,8 @@ const ExploreAndFeatures = () => {
         aria-hidden="true"
         className="absolute -bottom-1/4 -right-20 w-1/2 h-full bg-[url('/src/assets/abstract-crab.svg')] bg-no-repeat opacity-10"
       />
-
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 font-serif">
-            Your Island, <span className="text-primary">Your Way</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Whether you need a quick ride, a custom tour, or tips on the best
-            spots, we've got you covered.
-          </p>
-        </div>
-
         <Tabs defaultValue="explore" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto h-12">
-            <TabsTrigger value="explore" className="text-base">
-              Explore The Island
-            </TabsTrigger>
-            <TabsTrigger value="features" className="text-base">
-              Our Services
-            </TabsTrigger>
-          </TabsList>
-
           <TabsContent value="explore" className="mt-10">
             <Carousel
               opts={{ align: "start", loop: true }}
@@ -137,6 +114,15 @@ const ExploreAndFeatures = () => {
               <CarouselPrevious className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 left-4 lg:-left-12" />
               <CarouselNext className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 right-4 lg:-right-12" />
             </Carousel>
+
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto h-12 my-10">
+              <TabsTrigger value="explore" className="text-base">
+                Explore The Island
+              </TabsTrigger>
+              <TabsTrigger value="features" className="text-base">
+                Our Services
+              </TabsTrigger>
+            </TabsList>
           </TabsContent>
 
           <TabsContent value="features" className="mt-10">

@@ -15,8 +15,8 @@ const Index = () => {
       <main>
         <Hero />
         <HowItWorks />
-        <ExploreAndFeatures /> {/* <-- 2. Use the new component here */}
         <InteractiveMap />
+        <ExploreAndFeatures />
         <About />
       </main>
       <Footer />
