@@ -27,27 +27,12 @@ const Features = () => {
       description:
         "Need groceries or restaurant delivery? Our drivers can pick up and deliver while you relax.",
     },
-    {
-      icon: <Navigation className="w-6 h-6" />,
-      title: "Local Knowledge",
-      description:
-        "Our San Pedrano drivers know the best spots, shortest routes, and can share island secrets.",
-    },
   ];
 
   return (
-    <section id="features" className="py-20 bg-muted/40">
+    <section id="features" className="pt-20 bg-muted/40 ">
       <div className="container mx-auto px-4">
-        <div className="text-left mb-16">
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="text-green">More than just ride-sharing</span>
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Experience the island like never before with our unique features.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
           {features.map((feature, index) => (
             <Card
               key={index}

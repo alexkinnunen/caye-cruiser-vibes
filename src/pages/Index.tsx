@@ -13,10 +13,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <InteractiveMap />
         <HowItWorks />
-        <IslandExplorer />
+        <InteractiveMap />
         <Features />
+        <IslandExplorer />
         <About />
       </main>
       <Footer />

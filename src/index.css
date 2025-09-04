@@ -19,7 +19,7 @@
     --primary: 19 97% 59%; /* Vibrant coral orange */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 85% 45%; /* Vibrant Teal/Green Accent */
+    --secondary: 69, 31%, 51%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%; /* Light gray for muted backgrounds */

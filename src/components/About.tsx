@@ -9,13 +9,13 @@ import { Heart, Shield, Users, MapPin, Phone, Mail } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="pt-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-right mb-16">
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
             <span className="text-primary">For the Island,</span> By the Island
           </h2>
-          <p className="text-xl text-muted-foreground text-right">
+          <p className="text-xl text-muted-foreground text-center pb-10">
             Built to support local drivers, empower island businesses, and
             enhance the Caribbean experience for everyone.
           </p>
