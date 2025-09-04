@@ -23,8 +23,7 @@ const buttonVariants = cva(
         accent:
           "bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 shadow-md hover:shadow-lg",
         outline2:
-          "border border-green/30 bg-background text-green hover:bg-green/10",
-        badge: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border border-primary bg-background hover:from-primary-glow hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl",
       },
       size: {
         default: "h-10 px-4 py-2",

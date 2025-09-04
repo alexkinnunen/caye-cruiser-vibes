@@ -1,11 +1,12 @@
+// src/pages/Index.tsx
+
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import HowItWorks from "@/components/HowItWorks";
+import ExploreAndFeatures from "@/components/ExploreAndFeatures"; // <-- 1. Import new component
 import InteractiveMap from "@/components/InteractiveMap";
-import IslandExplorer from "@/components/IslandExplorer";
 
 const Index = () => {
   return (
@@ -14,9 +15,8 @@ const Index = () => {
       <main>
         <Hero />
         <HowItWorks />
+        <ExploreAndFeatures /> {/* <-- 2. Use the new component here */}
         <InteractiveMap />
-        <Features />
-        <IslandExplorer />
         <About />
       </main>
       <Footer />
