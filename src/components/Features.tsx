@@ -5,27 +5,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Navigation,
-  Users,
-  MapPin,
-  Truck,
-  Clock,
-  DollarSign,
-  Smartphone,
-  Star,
-} from "lucide-react";
+import { Navigation, MapPin, Truck, Smartphone } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
-      icon: <Star className="w-6 h-6" />,
+      icon: <Smartphone className="w-6 h-6" />,
       title: "Ride Sharing",
       description:
         "Our San Pedrano drivers know the best spots, shortest routes, and can share island secrets.",
     },
     {
-      icon: <Users className="w-6 h-6" />,
+      icon: <MapPin className="w-6 h-6" />,
       title: "Tour Stop Mode",
       description:
         "Add multiple stops to explore the island. Perfect for beach hopping, dining, and sightseeing in one trip.",
@@ -37,7 +28,7 @@ const Features = () => {
         "Need groceries or restaurant delivery? Our drivers can pick up and deliver while you relax.",
     },
     {
-      icon: <Star className="w-6 h-6" />,
+      icon: <Navigation className="w-6 h-6" />,
       title: "Local Knowledge",
       description:
         "Our San Pedrano drivers know the best spots, shortest routes, and can share island secrets.",
@@ -45,7 +36,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-24 bg-muted/40">
+    <section id="features" className="py-20 bg-muted/40">
       <div className="container mx-auto px-4">
         <div className="text-left mb-16">
           <h2 className="text-4xl font-bold mb-4">

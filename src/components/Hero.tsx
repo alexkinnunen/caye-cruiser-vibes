@@ -43,6 +43,9 @@ const Hero = () => {
               </Button>
             </Link>
           </div>
+          <div>
+            <QuickFeatures />
+          </div>
         </div>
       </div>
     </section>

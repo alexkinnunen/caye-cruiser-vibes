@@ -5,6 +5,8 @@ import About from "@/components/About";
 import Footer from "@/components/Footer";
 import HowItWorks from "@/components/HowItWorks";
 import InteractiveMap from "@/components/InteractiveMap";
+import IslandExplorer from "@/components/IslandExplorer";
+
 const Index = () => {
   return (
     <div className="min-h-screen">
@@ -13,6 +15,7 @@ const Index = () => {
         <Hero />
         <InteractiveMap />
         <HowItWorks />
+        <IslandExplorer />
         <Features />
         <About />
       </main>
