@@ -58,7 +58,6 @@ const ExploreAndFeatures = () => {
       id="explore"
       className="py-20 relative overflow-hidden bg-muted/50"
     >
-      {/* Background vectors can remain here to style the whole section */}
       <div
         aria-hidden="true"
         className="absolute -top-1/4 -left-20 w-1/2 h-full bg-[url('/src/assets/swirled-wave.svg')] bg-no-repeat opacity-10"
@@ -89,7 +88,6 @@ const ExploreAndFeatures = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Island Explorer Carousel Content */}
           <TabsContent value="explore" className="mt-10">
             <Carousel
               opts={{ align: "start", loop: true }}
@@ -141,7 +139,6 @@ const ExploreAndFeatures = () => {
             </Carousel>
           </TabsContent>
 
-          {/* Features Grid Content */}
           <TabsContent value="features" className="mt-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {features.map((feature, index) => (
