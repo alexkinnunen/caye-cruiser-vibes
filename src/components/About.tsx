@@ -29,7 +29,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="lg:py-32">
+    <section id="about" className="lg:py-10">
       <div className="container mx-auto px-4">
         {/* Main Heading for the Section */}
         <div className="text-center mb-16">

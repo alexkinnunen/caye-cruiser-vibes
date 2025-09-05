@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -30,24 +23,41 @@ const ExploreAndFeatures = () => {
     );
   };
 
+  const handleRequestService = (serviceTitle: string) => {
+    const message = `Hi Caye Cruiser! I'm interested in your ${serviceTitle} service.`;
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
   const features = [
     {
-      icon: <Smartphone className="w-6 h-6" />,
+      icon: <Smartphone className="w-16 h-16 text-primary" />,
       title: "Ride Sharing",
+      category: "Transport",
+      badgeClass: "border-blue-500 text-blue-600",
       description:
         "Our San Pedrano drivers know the best spots, shortest routes, and can share island secrets.",
+      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
+      icon: <MapPin className="w-16 h-16 text-primary" />,
       title: "Tour Stop Mode",
+      category: "Tours",
+      badgeClass: "border-green-500 text-green-600",
       description:
         "Add multiple stops to explore the island for beach hopping, dining, and sightseeing.",
+      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
     {
-      icon: <Truck className="w-6 h-6" />,
+      icon: <Truck className="w-16 h-16 text-primary" />,
       title: "Caye Cargo Delivery",
+      category: "Delivery",
+      badgeClass: "border-orange-500 text-orange-600",
       description:
         "Need groceries or restaurant delivery? Our drivers can pick up and deliver while you relax.",
+      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
   ];
 
@@ -65,7 +75,7 @@ const ExploreAndFeatures = () => {
           </p>
         </div>
 
-        {/* Tab Controls Moved to the Top */}
+        {/* Tab Controls */}
         <div className="flex justify-center mb-12">
           <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
             <TabsTrigger
@@ -136,25 +146,39 @@ const ExploreAndFeatures = () => {
         </TabsContent>
 
         <TabsContent value="features">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:scale-105 border-border/50 text-center"
+                className="overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
               >
-                <CardHeader className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-lg pt-4">
+                {/* Icon as image placeholder - you can replace with actual service images */}
+                <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+                  {feature.icon}
+                </div>
+                <CardContent className="p-6 flex-grow">
+                  <Badge
+                    variant="outline"
+                    className={`mb-2 ${feature.badgeClass}`}
+                  >
+                    {feature.category}
+                  </Badge>
+                  <h3 className="text-xl font-bold font-serif mb-2">
                     {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="leading-relaxed">
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
                     {feature.description}
-                  </CardDescription>
+                  </p>
                 </CardContent>
+                <CardFooter>
+                  <Button
+                    onClick={() => handleRequestService(feature.title)}
+                    className="w-full"
+                    variant="herolink"
+                  >
+                    Learn More
+                  </Button>
+                </CardFooter>
               </Card>
             ))}
           </div>

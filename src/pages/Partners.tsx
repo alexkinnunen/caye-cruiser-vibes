@@ -1,76 +1,346 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, DollarSign, Zap } from "lucide-react";
+import {
+  CheckCircle,
+  DollarSign,
+  Zap,
+  Users,
+  MapPin,
+  Building2,
+  Car,
+  Smartphone,
+  Clock,
+  Shield,
+  TrendingUp,
+  Heart,
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import fullBg from "@/assets/full-bg.svg";
 
 const Partners = () => {
+  const WHATSAPP_NUMBER = "5016252086";
+
+  const partnerTypes = [
+    {
+      title: "Individual Drivers",
+      icon: <Users className="w-8 h-8" />,
+      description:
+        "Local residents with golf carts looking to earn flexible income",
+      benefits: [
+        "70% commission on every ride",
+        "Flexible scheduling around your life",
+        "Use your own golf cart",
+        "Community engagement opportunities",
+        "Tourist interaction and local pride",
+      ],
+      requirements: [
+        "Valid driver's license (18+ years)",
+        "Local San Pedro residency",
+        "Golf cart with current insurance",
+        "Clean driving record",
+        "Smartphone with WhatsApp",
+      ],
+      cta: "Start Driving",
+      ctaMessage: "I'm interested in becoming a Caye Cruiser driver",
+    },
+    {
+      title: "Golf Cart Rental Companies",
+      icon: <Car className="w-8 h-8" />,
+      description:
+        "Established rental businesses seeking additional revenue streams",
+      benefits: [
+        "Additional income from idle inventory",
+        "Reduced wear on premium rental carts",
+        "Data insights on demand patterns",
+        "Marketing reach to new customers",
+        "Revenue sharing: 70% partner, 30% platform",
+      ],
+      requirements: [
+        "Established golf cart rental business",
+        "Fleet of 5+ available carts",
+        "Current business licenses",
+        "Comprehensive insurance coverage",
+        "Commitment to training drivers",
+      ],
+      cta: "Partner with Us",
+      ctaMessage:
+        "I represent a golf cart rental company interested in partnering",
+    },
+    {
+      title: "Hotels & Resorts",
+      icon: <Building2 className="w-8 h-8" />,
+      description: "Accommodation providers wanting to enhance guest services",
+      benefits: [
+        "Enhanced guest transportation services",
+        "Reduced front desk coordination",
+        "Commission sharing opportunities",
+        "Preferred booking status for guests",
+        "Improved guest satisfaction scores",
+      ],
+      requirements: [
+        "Licensed accommodation business",
+        "Guest capacity of 20+ rooms",
+        "Concierge or front desk services",
+        "Commitment to promoting service",
+        "Guest feedback participation",
+      ],
+      cta: "Enhance Guest Experience",
+      ctaMessage: "I'm interested in a hotel partnership with Caye Cruiser",
+    },
+  ];
+
+  const whyPartner = [
+    {
+      icon: <TrendingUp className="w-6 h-6 text-green" />,
+      title: "Growing Market",
+      description:
+        "20,000+ residents and thousands of tourists year-round on a 2.5 square mile island",
+    },
+    {
+      icon: <Smartphone className="w-6 h-6 text-green" />,
+      title: "WhatsApp Integration",
+      description:
+        "Easy-to-use platform that locals and tourists already know and trust",
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-green" />,
+      title: "First-Mover Advantage",
+      description:
+        "Be part of the first organized ride-sharing system in San Pedro",
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-green" />,
+      title: "Community Impact",
+      description:
+        "Help solve real transportation challenges for locals and tourists alike",
+    },
+  ];
+
+  const supportFeatures = [
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: "Insurance Coverage",
+      description:
+        "Comprehensive insurance protection for all partners and passengers",
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "24/7 Support",
+      description: "Round-the-clock customer support for partners and riders",
+    },
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "Real-Time Tracking",
+      description: "GPS tracking and automated matching system for efficiency",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6" />,
+      title: "Transparent Payments",
+      description: "Clear commission structure with prompt payment processing",
+    },
+  ];
+
+  const handlePartnerContact = (message: string) => {
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <section className="pt-20 pb-16 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto px-4">
+
+      {/* Hero Section */}
+      <section className="pt-20 pb-16 relative overflow-hidden bg-muted/50">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5"
+          style={{ backgroundImage: `url(${fullBg})` }}
+        />
+        <div className="container mx-auto pt-10 px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
-              Partner with <span className="text-primary">Caye Cruiser</span>
+            <h1 className="text-4xl md:text-6xl font-bold font-serif text-foreground mb-6">
+              Partner with <span className="text-green">Caye Cruiser</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Join our network of local drivers and businesses to earn more and
-              help us provide the best transportation service on the island.
+              Join our network of local drivers and businesses to earn more,
+              serve the community, and help us provide San Pedro's first
+              organized ride-sharing service.
             </p>
-            <Button size="lg" variant="hero">
-              <a
-                href="https://wa.me/5016252086?text=I'm%20interested%20in%20partnering%20with%20Caye%20Cruiser"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Become a Partner Today
-              </a>
+            <Button
+              size="lg"
+              variant="herolink"
+              onClick={() =>
+                handlePartnerContact(
+                  "I'm interested in learning more about partnership opportunities with Caye Cruiser"
+                )
+              }
+            >
+              Start Your Partnership Journey
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
+      {/* Why Partner With Us */}
+      <section className="py-16 bg-green/10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <DollarSign className="w-8 h-8 text-primary" />
-                <CardTitle>Earn More</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Earn a competitive commission on every ride and get access to
-                  our growing customer base.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <Zap className="w-8 h-8 text-primary" />
-                <CardTitle>Flexible Schedule</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Drive when you want, where you want. You're in control of your
-                  own schedule.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CheckCircle className="w-8 h-8 text-primary" />
-                <CardTitle>Easy to Use</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Our WhatsApp-based system is simple and easy to use. No
-                  complicated apps to download.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whyPartner.map((reason, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow"
+              >
+                <CardHeader>
+                  <div className="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    {reason.icon}
+                  </div>
+                  <CardTitle className="text-lg">{reason.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">
+                    {reason.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Partnership Types */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
+              Partnership Opportunities
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose the partnership model that fits your business or lifestyle.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {partnerTypes.map((partner, index) => (
+              <Card
+                key={index}
+                className="h-full flex flex-col hover:shadow-xl transition-all duration-300"
+              >
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-med-purple/10 rounded-lg flex items-center justify-center mx-auto mb-4 text-med-purple">
+                    {partner.icon}
+                  </div>
+                  <CardTitle className="text-xl font-serif">
+                    {partner.title}
+                  </CardTitle>
+                  <p className="text-muted-foreground text-sm">
+                    {partner.description}
+                  </p>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3 text-med-purple">
+                      Benefits:
+                    </h4>
+                    <ul className="space-y-2">
+                      {partner.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-start text-sm">
+                          <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3 text-med-purple">
+                      Requirements:
+                    </h4>
+                    <ul className="space-y-2">
+                      {partner.requirements.map((req, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start text-sm text-muted-foreground"
+                        >
+                          <div className="w-2 h-2 bg-muted-foreground/50 rounded-full mr-2 mt-2 flex-shrink-0" />
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+                <div className="p-6 pt-0">
+                  <Button
+                    className="w-full"
+                    variant="herolink"
+                    onClick={() => handlePartnerContact(partner.ctaMessage)}
+                  >
+                    {partner.cta}
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Support & Features */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
+              Partner Support & Features
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              We provide comprehensive support to ensure your success as a Caye
+              Cruiser partner.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {supportFeatures.map((feature, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow border-border/50"
+              >
+                <CardHeader>
+                  <div className="w-12 h-12 bg-green/10 rounded-lg flex items-center justify-center mx-auto mb-4 text-green">
+                    {feature.icon}
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-green/10 text-green">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
+            Ready to Join the Caye Cruiser Network?
+          </h2>
+          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto text-muted-foreground">
+            Be part of San Pedro's transportation revolution. Contact us today
+            to learn more about partnership opportunities and start earning with
+            Caye Cruiser.
+          </p>
+          <Button
+            size="lg"
+            variant="herolink"
+            onClick={() =>
+              handlePartnerContact(
+                "I'm ready to become a Caye Cruiser partner. Please send me more information."
+              )
+            }
+          >
+            Get Started Today
+          </Button>
         </div>
       </section>
 

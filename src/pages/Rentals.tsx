@@ -3,9 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Car, Users, Leaf, Crown, CheckCircle } from "lucide-react";
 import Footer from "@/components/Footer";
-import ctaImage from "@/assets/cta-beach.jpg";
-// 1. Import the Header component
 import Header from "@/components/Header";
+import About from "@/components/About";
 
 const Rentals = () => {
   const vehicles = [
@@ -139,31 +138,7 @@ const Rentals = () => {
             </Tabs>
           </div>
         </section>
-
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="relative overflow-hidden rounded-3xl">
-              <img
-                src={ctaImage}
-                alt="Golf carts on a beach in San Pedro"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="relative p-8 md:p-12 text-center text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Explore Paradise?
-                </h2>
-                <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                  Book your golf cart rental today and start your San Pedro
-                  adventure.
-                </p>
-                <Button size="lg" variant="default">
-                  Book Online
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <About />
       </main>
       <Footer />
     </div>
