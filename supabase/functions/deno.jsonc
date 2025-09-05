@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.ns"]
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "options": {
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true
+    }
+  }
+}
