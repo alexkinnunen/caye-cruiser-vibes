@@ -1,7 +1,7 @@
 // supabase/functions/create-payment-session/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@11.1.0";
-import { z } from "https://deno.land/x/zod/mod.ts";
+import { z, ZodError } from "https://deno.land/x/zod@v3.25.0/mod.ts";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY")!, {
   apiVersion: "2022-11-15",
@@ -40,10 +40,10 @@ serve(async (req) => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    if (error instanceof z.ZodError) {
+    if (error instanceof ZodError) {
       return new Response(JSON.stringify({ error: error.issues }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-type": "application/json" },
       });
     }
     console.error("Error creating payment session:", error);
