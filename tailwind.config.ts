@@ -47,11 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        // ✅ FIXED: Use quotes for names with hyphens
+        "brand-red": "hsl(var(--brand-red))",
         "wine-red": "hsl(var(--wine-red))",
         "deep-purple": "hsl(var(--deep-purple))",
         "med-purple": "hsl(var(--med-purple))",
         green: "hsl(var(--green))",
-        "brand-red": "hsl(var(--brand-red))",
       },
       borderRadius: {
         lg: "var(--radius)",

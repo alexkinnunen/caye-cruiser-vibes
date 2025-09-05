@@ -5,9 +5,16 @@ import { MapPin, ArrowRight, Users, Calendar } from "lucide-react";
 
 const InteractiveMap = () => {
   return (
-    <section id="interactive-map" className="pt-20 bg-muted/50">
+    // The section has no background, allowing the pattern to show in the padding area.
+    <section id="interactive-map" className="pt-10">
       <div className="container mx-auto px-4">
-        <Card className="overflow-hidden shadow-2xl">
+        {/*
+          THE FIX:
+          We are using `bg-white` and `dark:bg-slate-950` to apply a
+          guaranteed solid background color directly to the card,
+          overriding any transparent theme colors.
+        */}
+        <Card className="overflow-hidden shadow-2xl bg-white dark:bg-slate-950">
           <CardContent className="p-0">
             {/* Map and Floating Button Container */}
             <div className="relative">

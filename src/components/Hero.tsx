@@ -4,7 +4,7 @@ import QuickFeatures from "@/components/QuickFeatures";
 
 const Hero = () => {
   return (
-    <section className="bg-primary text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-24">
+    <section className="bg-primary/90 text-primary-foreground pt-28 pb-16 md:pt-32 md:pb-24">
       {/* Content */}
       <div className="container mx-auto px-4 text-center md:text-left">
         <div className="max-w-2xl mx-auto md:mx-0">
@@ -15,8 +15,9 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl text-primary-foreground/90 mb-6 leading-relaxed">
-            Your on-demand golf cart is just a WhatsApp message away. Explore
-            San Pedro with the tap of a button.
+            You better Belize it. On-demand golf cart rides are just a WhatsApp
+            message away. San Pedro and Ambergris Caye, now at the tip of your
+            fingers.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-10 justify-center md:justify-start">

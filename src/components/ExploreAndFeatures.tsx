@@ -1,5 +1,3 @@
-// src/components/ExploreAndFeatures.tsx
-
 import {
   Card,
   CardContent,
@@ -18,7 +16,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PointsOfInterest } from "@/data/PointsOfInterest";
+import { PointsOfInterest } from "../data/PointsOfInterest";
 import { MapPin, Truck, Smartphone } from "lucide-react";
 
 const ExploreAndFeatures = () => {
@@ -54,9 +52,38 @@ const ExploreAndFeatures = () => {
   ];
 
   return (
-    // The <section> and background elements have been removed
-    <div className="container mx-auto px-4 relative z-10 py-20">
+    <div className="container mx-auto px-4 py-28 relative z-10">
       <Tabs defaultValue="explore" className="w-full">
+        {/* Main Section Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-serif text-foreground">
+            Explore & Cruise
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Discover the best of San Pedro with our curated points of interest,
+            or learn more about our convenient island-wide services.
+          </p>
+        </div>
+
+        {/* Tab Controls Moved to the Top */}
+        <div className="flex justify-center mb-12">
+          <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
+            <TabsTrigger
+              value="explore"
+              className="text-base rounded-md data-[state=active]:bg-green data-[state=active]:text-primary-foreground"
+            >
+              Explore The Island
+            </TabsTrigger>
+            <TabsTrigger
+              value="features"
+              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Our Services
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        {/* Tab Content */}
         <TabsContent value="explore">
           <Carousel
             opts={{ align: "start", loop: true }}
@@ -93,7 +120,7 @@ const ExploreAndFeatures = () => {
                         <Button
                           onClick={() => handleRequestRide(poi.title)}
                           className="w-full"
-                          variant="hero"
+                          variant="herolink"
                         >
                           Cruise There
                         </Button>
@@ -132,23 +159,6 @@ const ExploreAndFeatures = () => {
             ))}
           </div>
         </TabsContent>
-
-        <div className="flex justify-center mt-12">
-          <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
-            <TabsTrigger
-              value="explore"
-              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-            >
-              Explore The Island
-            </TabsTrigger>
-            <TabsTrigger
-              value="features"
-              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-            >
-              Our Services
-            </TabsTrigger>
-          </TabsList>
-        </div>
       </Tabs>
     </div>
   );

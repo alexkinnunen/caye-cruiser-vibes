@@ -29,7 +29,9 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 pt-20 relative z-10">
+    // REMOVED: <section> wrapper and background color
+    // ADDED: Padding (py-20) and z-index to ensure content is on top
+    <div className="container mx-auto px-4 py-10 relative z-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((step, index) => (
           <Card
@@ -37,7 +39,7 @@ const HowItWorks = () => {
             className="bg-background/80 backdrop-blur-sm border-border/50 text-center"
           >
             <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <div className="mx-auto w-16 h-16 bg-green/10 rounded-full flex items-center justify-center text-green mb-4">
                 {step.icon}
               </div>
               <CardTitle>{step.title}</CardTitle>

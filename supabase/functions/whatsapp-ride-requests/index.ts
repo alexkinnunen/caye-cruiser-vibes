@@ -13,6 +13,28 @@ const META_TOKEN = Deno.env.get("META_PERMANENT_TOKEN");
 const META_PHONE_NUMBER_ID = Deno.env.get("META_PHONE_NUMBER_ID");
 const META_VERIFY_TOKEN = Deno.env.get("META_VERIFY_TOKEN");
 
+const sendWhatsAppMessage = async (to: string, text: string) => {
+  const endpoint = `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`;
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${META_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messaging_product: "whatsapp",
+      to: to,
+      type: "text",
+      text: { body: text },
+    }),
+  });
+
+  if (!response.ok) {
+    console.error(`Failed to send message to ${to}:`, await response.json());
+  }
+};
+
 serve(async (req) => {
   if (req.method === "GET") {
     return handleVerification(req);
@@ -196,27 +218,5 @@ async function handleDriverMessage(
       driver.phone_number,
       'Sorry, I didn\'t understand that. Please reply with "accept", "decline", or "complete".'
     );
-  }
-}
-
-async function sendWhatsAppMessage(to: string, text: string) {
-  const endpoint = `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`;
-
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${META_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      to: to,
-      type: "text",
-      text: { body: text },
-    }),
-  });
-
-  if (!response.ok) {
-    console.error(`Failed to send message to ${to}:`, await response.json());
   }
 }

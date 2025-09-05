@@ -1,24 +1,21 @@
 // supabase/functions/create-payment-session/index.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@11.1.0";
+import { z } from "https://deno.land/x/zod/mod.ts";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY")!, {
   apiVersion: "2022-11-15",
 });
 
+const PaymentRequest = z.object({
+  rideId: z.string(),
+  amount: z.number().positive(),
+});
+
 serve(async (req) => {
   try {
-    const { rideId, amount } = await req.json();
-
-    if (!rideId || !amount) {
-      return new Response(
-        JSON.stringify({ error: "Missing rideId or amount" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
+    const body = await req.json();
+    const { rideId, amount } = PaymentRequest.parse(body);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -43,6 +40,12 @@ serve(async (req) => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify({ error: error.issues }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
     console.error("Error creating payment session:", error);
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
