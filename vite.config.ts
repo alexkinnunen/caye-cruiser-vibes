@@ -6,8 +6,8 @@ import path from "path";
 export default defineConfig({
   server: {
     host: "::",
-    port: 8080,
-    open: true, // Automatically open the browser on server start
+    port: 8080, // Correct port
+    open: true,
   },
   plugins: [react()],
   resolve: {
