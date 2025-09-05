@@ -54,104 +54,103 @@ const ExploreAndFeatures = () => {
   ];
 
   return (
-    <section id="explore" className="py-7 relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute -top-1/4 -left-20 w-1/2 h-full bg-[url('/src/assets/swirled-wave.svg')] bg-no-repeat opacity-10"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-1/4 -right-20 w-1/2 h-full bg-[url('/src/assets/abstract-crab.svg')] bg-no-repeat opacity-10"
-      />
-      <div className="container mx-auto px-4 relative z-10">
-        <Tabs defaultValue="explore" className="w-full">
-          <TabsContent value="explore" className="mt-10">
-            <Carousel
-              opts={{ align: "start", loop: true }}
-              className="w-full max-w-6xl mx-auto relative"
-            >
-              <CarouselContent>
-                {PointsOfInterest.map((poi) => (
-                  <CarouselItem
-                    key={poi.id}
-                    className="md:basis-1/2 lg:basis-1/3"
-                  >
-                    <div className="p-1 h-full">
-                      <Card className="overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                        <img
-                          src={poi.image}
-                          alt={poi.title}
-                          className="w-full h-48 object-cover"
-                        />
-                        <CardContent className="p-6 flex-grow">
-                          <Badge
-                            variant="outline"
-                            className={`mb-2 ${poi.badgeClass}`}
-                          >
-                            {poi.category}
-                          </Badge>
-                          <h3 className="text-xl font-bold font-serif mb-2">
-                            {poi.title}
-                          </h3>
-                          <p className="text-muted-foreground text-sm">
-                            {poi.description}
-                          </p>
-                        </CardContent>
-                        <CardFooter>
-                          <Button
-                            onClick={() => handleRequestRide(poi.title)}
-                            className="w-full"
-                            variant="hero"
-                          >
-                            Cruise There
-                          </Button>
-                        </CardFooter>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 left-4 lg:-left-12" />
-              <CarouselNext className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 right-4 lg:-right-12" />
-            </Carousel>
-
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto h-12 my-10">
-              <TabsTrigger value="explore" className="text-base">
-                Explore The Island
-              </TabsTrigger>
-              <TabsTrigger value="features" className="text-base">
-                Our Services
-              </TabsTrigger>
-            </TabsList>
-          </TabsContent>
-
-          <TabsContent value="features" className="mt-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {features.map((feature, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-lg transition-all duration-300 hover:scale-105 border-border/50 text-center"
+    // The <section> and background elements have been removed
+    <div className="container mx-auto px-4 relative z-10 py-20">
+      <Tabs defaultValue="explore" className="w-full">
+        <TabsContent value="explore">
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent className="-ml-2 p-4">
+              {PointsOfInterest.map((poi) => (
+                <CarouselItem
+                  key={poi.id}
+                  className="pl-2 md:basis-1/2 lg:basis-1/3"
                 >
-                  <CardHeader className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      {feature.icon}
-                    </div>
-                    <CardTitle className="text-lg pt-4">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+                  <div className="p-1 h-full">
+                    <Card className="overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                      <img
+                        src={poi.image}
+                        alt={poi.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <CardContent className="p-6 flex-grow">
+                        <Badge
+                          variant="outline"
+                          className={`mb-2 ${poi.badgeClass}`}
+                        >
+                          {poi.category}
+                        </Badge>
+                        <h3 className="text-xl font-bold font-serif mb-2">
+                          {poi.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          {poi.description}
+                        </p>
+                      </CardContent>
+                      <CardFooter>
+                        <Button
+                          onClick={() => handleRequestRide(poi.title)}
+                          className="w-full"
+                          variant="hero"
+                        >
+                          Cruise There
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </div>
+                </CarouselItem>
               ))}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </section>
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 left-4 lg:-left-12" />
+            <CarouselNext className="hidden md:inline-flex absolute top-1/2 -translate-y-1/2 right-4 lg:-right-12" />
+          </Carousel>
+        </TabsContent>
+
+        <TabsContent value="features">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-lg transition-all duration-300 hover:scale-105 border-border/50 text-center"
+              >
+                <CardHeader className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                    {feature.icon}
+                  </div>
+                  <CardTitle className="text-lg pt-4">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </TabsContent>
+
+        <div className="flex justify-center mt-12">
+          <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
+            <TabsTrigger
+              value="explore"
+              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Explore The Island
+            </TabsTrigger>
+            <TabsTrigger
+              value="features"
+              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Our Services
+            </TabsTrigger>
+          </TabsList>
+        </div>
+      </Tabs>
+    </div>
   );
 };
 

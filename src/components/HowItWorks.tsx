@@ -1,51 +1,54 @@
-import { MessageSquare, Car, Star } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Zap, MessageSquare, Map } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
     {
-      icon: <MessageSquare className="w-8 h-8 text-primary" />,
-      title: "Pick a Spot",
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: "1. Message Us",
       description:
-        "Simply use the map above to select your pickup and drop-off locations.",
+        "Send a quick message on WhatsApp with your location and destination.",
     },
     {
-      icon: <Car className="w-8 h-8 text-primary" />,
-      title: "Nearest Match",
+      icon: <Zap className="w-8 h-8" />,
+      title: "2. Get Matched",
       description:
-        "You'll be matched with the nearest available driver in minutes.",
+        "We'll instantly connect you with the nearest available Caye Cruiser driver.",
     },
     {
-      icon: <Star className="w-8 h-8 text-primary" />,
-      title: "Enjoy the Adventure",
+      icon: <Map className="w-8 h-8" />,
+      title: "3. Enjoy the Ride",
       description:
-        "Your friendly, local driver will take you to your destination safely.",
+        "Your friendly local driver will pick you up in minutes. It's that simple!",
     },
   ];
 
   return (
-    <section id="how-it-works" className=" my-5 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="relative text-center opacity-0 animate-fade-in-up"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <h3 className="text-6xl font-bold text-primary/20">
-                  0{index + 1}
-                </h3>
+    <div className="container mx-auto px-4 pt-20 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step, index) => (
+          <Card
+            key={index}
+            className="bg-background/80 backdrop-blur-sm border-border/50 text-center"
+          >
+            <CardHeader>
+              <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+                {step.icon}
               </div>
-              <h4 className="text-2xl font-semibold mb-2 font-serif">
-                {step.title}
-              </h4>
-              <p className="text-muted-foreground">{step.description}</p>
-            </div>
-          ))}
-        </div>
+              <CardTitle>{step.title}</CardTitle>
+            </CardHeader>
+            <CardDescription className="px-6 pb-6">
+              {step.description}
+            </CardDescription>
+          </Card>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import { MapPin, ArrowRight, Users, Calendar } from "lucide-react";
 
 const InteractiveMap = () => {
   return (
-    <section id="interactive-map" className="pt-10 pb-10 bg-background">
+    <section id="interactive-map" className="pt-20 bg-muted/50">
       <div className="container mx-auto px-4">
         <Card className="overflow-hidden shadow-2xl">
           <CardContent className="p-0">
