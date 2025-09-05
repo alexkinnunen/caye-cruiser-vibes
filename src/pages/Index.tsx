@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import QuickFeatures from "@/components/QuickFeatures";
 import HowItWorks from "@/components/HowItWorks";
-import VehicleClasses from "@/components/VehicleClasses";
 import ExploreAndFeatures from "@/components/ExploreAndFeatures";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
@@ -16,10 +15,8 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <QuickFeatures />
-        {/* Remove the Suspense wrapper */}
-        <InteractiveMap />
         <HowItWorks />
-        <VehicleClasses />
+        <InteractiveMap />
         <ExploreAndFeatures />
         <About />
       </main>

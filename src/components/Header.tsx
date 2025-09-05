@@ -15,7 +15,7 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center gap-6">
           <Link
-            to="/rentals"
+            to="/livemap"
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
             Catch a Cruiser
@@ -27,7 +27,7 @@ const Header = () => {
             Become a Partner
           </Link>
           <Link
-            to="/partners"
+            to="/rentals"
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
             Rent a Cart
