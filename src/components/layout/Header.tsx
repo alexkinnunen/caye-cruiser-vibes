@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import golfCartIcon from "@/assets/golfcart.svg";
 import { useAuth } from "@/hooks/useAuth";
-import { AuthDialog } from "@/components/AuthDialog";
+import { AuthDialog } from "@/components/login/AuthDialog";
 
 const Header = () => {
   const { user, signOut } = useAuth();

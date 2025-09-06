@@ -404,11 +404,13 @@
         "npm:input-otp@^1.4.2",
         "npm:lovable-tagger@^1.1.9",
         "npm:lucide-react@0.462",
+        "npm:mapbox-gl@3",
         "npm:next-themes@0.3",
         "npm:postcss@^8.5.6",
         "npm:react-day-picker@^8.10.1",
         "npm:react-dom@^18.3.1",
         "npm:react-hook-form@^7.61.1",
+        "npm:react-map-gl@7.1.7",
         "npm:react-resizable-panels@^2.1.9",
         "npm:react-router-dom@^6.30.1",
         "npm:react-scripts@5.0.1",
@@ -422,7 +424,7 @@
         "npm:typescript@^5.8.3",
         "npm:vaul@~0.9.9",
         "npm:vite@^5.4.19",
-        "npm:zod@^4.1.5"
+        "npm:zod@^3.25.76"
       ]
     }
   }

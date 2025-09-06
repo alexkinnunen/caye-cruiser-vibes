@@ -10,7 +10,7 @@ import LiveMap from "@/pages/MapAndExplore";
 import { AuthProvider } from "@/hooks/useAuth";
 import UserAccount from "@/pages/UserAccount";
 import PartnerAccount from "@/pages/PartnerAccount";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import ProtectedRoute from "@/components/login/ProtectedRoute";
 
 const queryClient = new QueryClient();
 

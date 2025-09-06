@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import QuickFeatures from "@/components/QuickFeatures";
+import QuickFeatures from "@/components/marketing/QuickFeatures";
 
 const Hero = () => {
   return (

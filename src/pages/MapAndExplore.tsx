@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import fullBgb from "@/assets/full-bg2.svg";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Smartphone, MapPin, ExternalLink } from "lucide-react";
-import InteractiveMap from "@/components/InteractiveMap";
+import InteractiveMap from "@/components/map/InteractiveMap";
 
 type PointOfInterest = {
   id: number;

@@ -4,9 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle, Quote } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 import fullBg from "@/assets/full-bg.svg";
-import Header from "@/components/Header";
+import Header from "@/components/layout/Header";
 
 // Import your vehicle images from the assets folder
 import ecoCayeImage from "@/assets/vehicles/cart1.jpg";
