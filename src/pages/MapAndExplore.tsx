@@ -32,7 +32,7 @@ const MapAndExplore = () => {
   const [PointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
     []
   );
-  const WHATSAPP_NUMBER = "5016252086";
+  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
   const handleRequestRide = (locationTitle: string) => {
     const message = `Hi Caye Cruiser! I'd like a ride to ${locationTitle}.`;
@@ -105,9 +105,6 @@ const MapAndExplore = () => {
           />
 
           <div className="relative pt-20 z-10">
-            {/* --- Interactive Map Section --- */}
-            <InteractiveMap />
-
             {/* --- Explore and Features Section --- */}
             <section className="relative z-10 pt-10 pb-20">
               <div className="container mx-auto px-4">
@@ -118,6 +115,23 @@ const MapAndExplore = () => {
                   You Drink. We'll Drive. Explore top spots and our unique
                   services, all with Caye Cruiser ride.
                 </p>
+
+                <div className="flex justify-center mt-10">
+                  <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
+                    <TabsTrigger
+                      value="explore"
+                      className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                    >
+                      Explore The Island
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="features"
+                      className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                    >
+                      Our Services
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
 
                 <Tabs defaultValue="explore" className="w-full">
                   <TabsContent value="explore">
@@ -228,23 +242,9 @@ const MapAndExplore = () => {
                       ))}
                     </div>
                   </TabsContent>
-                  <div className="flex justify-center mt-10">
-                    <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
-                      <TabsTrigger
-                        value="explore"
-                        className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                      >
-                        Explore The Island
-                      </TabsTrigger>
-                      <TabsTrigger
-                        value="features"
-                        className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                      >
-                        Our Services
-                      </TabsTrigger>
-                    </TabsList>
-                  </div>
                 </Tabs>
+                {/* --- Interactive Map Section --- */}
+                <InteractiveMap />
               </div>
             </section>
           </div>

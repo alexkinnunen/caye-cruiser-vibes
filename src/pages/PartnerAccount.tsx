@@ -21,9 +21,7 @@ const PartnerAccount = () => {
                 </AvatarFallback>
               </Avatar>
               <div>
-                <CardTitle className="text-2xl">
-                  Partner/Driver Account
-                </CardTitle>
+                <CardTitle className="text-2xl">Partner Account</CardTitle>
                 <p className="text-muted-foreground">{user?.email}</p>
               </div>
             </div>

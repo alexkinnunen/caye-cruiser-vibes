@@ -1,5 +1,5 @@
-// src/components/ExploreAndFeatures.tsx
-
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Carousel,
@@ -11,11 +11,40 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PointsOfInterest } from "@/data/PointsOfInterest";
-import { MapPin, Truck, Smartphone } from "lucide-react";
+import { MapPin, Truck, Smartphone, ExternalLink } from "lucide-react";
+
+// Define the type for a Point of Interest, matching the database structure
+type PointOfInterest = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  badge_class: string;
+  website_url?: string;
+};
 
 const ExploreAndFeatures = () => {
+  const [pointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
+    []
+  );
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
+
+  useEffect(() => {
+    const fetchPOIs = async () => {
+      const { data, error } = await supabase
+        .from("points_of_interest")
+        .select("*");
+
+      if (error) {
+        console.error("Error fetching points of interest:", error);
+      } else if (data) {
+        setPointsOfInterest(data);
+      }
+    };
+
+    fetchPOIs();
+  }, []);
 
   const handleRequestRide = (locationTitle: string) => {
     const message = `Hi Caye Cruiser! I'd like a ride to ${locationTitle}.`;
@@ -41,7 +70,6 @@ const ExploreAndFeatures = () => {
       badgeClass: "border-blue-500 text-blue-600",
       description:
         "Our San Pedrano drivers know the best spots, shortest routes, and can share island secrets.",
-      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
     {
       icon: <MapPin className="w-16 h-16 text-primary" />,
@@ -50,7 +78,6 @@ const ExploreAndFeatures = () => {
       badgeClass: "border-green-500 text-green-600",
       description:
         "Add multiple stops to explore the island for beach hopping, dining, and sightseeing.",
-      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
     {
       icon: <Truck className="w-16 h-16 text-primary" />,
@@ -59,75 +86,71 @@ const ExploreAndFeatures = () => {
       badgeClass: "border-orange-500 text-orange-600",
       description:
         "Need groceries or restaurant delivery? Our drivers can pick up and deliver while you relax.",
-      image: "/api/placeholder/400/200", // You'll need to replace with actual service images
     },
   ];
 
   return (
-    <div className="container mx-auto px-4 py-28 relative z-10">
+    <section className="container mx-auto px-4 py-28 relative z-10">
+      {/* Main Section Header */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl text-center md:text-6xl font-bold font-serif text-foreground mb-6">
+          Explore & <span className="text-primary">Cruise</span>
+        </h1>
+        <p className="text-xl text-center text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          You Drink. We'll Drive. Discover the best of San Pedro with our
+          curated points of interest and unique services.
+        </p>
+      </div>
+
       <Tabs defaultValue="explore" className="w-full">
-        {/* Main Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-serif text-foreground">
-            Explore & Cruise
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Discover the best of San Pedro with our curated points of interest,
-            or learn more about our convenient island-wide services.
-          </p>
-        </div>
-
-        {/* Tab Controls */}
-        <div className="flex justify-center mb-12">
-          <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
-            <TabsTrigger
-              value="explore"
-              className="text-base rounded-md data-[state=active]:bg-green data-[state=active]:text-primary-foreground"
-            >
-              Explore The Island
-            </TabsTrigger>
-            <TabsTrigger
-              value="features"
-              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-            >
-              Our Services
-            </TabsTrigger>
-          </TabsList>
-        </div>
-
-        {/* Tab Content */}
         <TabsContent value="explore">
           <Carousel
             opts={{ align: "start", loop: true }}
             className="w-full max-w-6xl mx-auto"
           >
             <CarouselContent className="-ml-2 p-4">
-              {PointsOfInterest.map((poi) => (
+              {pointsOfInterest.map((poi) => (
                 <CarouselItem
                   key={poi.id}
                   className="pl-2 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="p-1 h-full">
                     <Card className="overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                      <img
-                        src={poi.image}
-                        alt={poi.title}
-                        className="w-full h-48 object-cover"
-                      />
-                      <CardContent className="p-6 flex-grow">
-                        <Badge
-                          variant="outline"
-                          className={`mb-2 ${poi.badgeClass}`}
-                        >
-                          {poi.category}
-                        </Badge>
-                        <h3 className="text-xl font-bold font-serif mb-2">
-                          {poi.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm">
-                          {poi.description}
-                        </p>
-                      </CardContent>
+                      <a
+                        href={poi.website_url || undefined}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`block ${
+                          poi.website_url ? "cursor-pointer" : "cursor-default"
+                        }`}
+                      >
+                        <img
+                          src={poi.image}
+                          alt={poi.title}
+                          className="w-full h-48 object-cover"
+                        />
+                        <CardContent className="p-6 flex-grow">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <Badge
+                                variant="outline"
+                                className={`mb-2 ${poi.badge_class}`}
+                              >
+                                {poi.category}
+                              </Badge>
+                              <h3 className="text-xl font-bold font-serif mb-2">
+                                {poi.title}
+                              </h3>
+                            </div>
+                            {poi.website_url && (
+                              <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                            )}
+                          </div>
+                          <p className="text-muted-foreground text-sm">
+                            {poi.description}
+                          </p>
+                        </CardContent>
+                      </a>
                       <CardFooter>
                         <Button
                           onClick={() => handleRequestRide(poi.title)}
@@ -154,7 +177,6 @@ const ExploreAndFeatures = () => {
                 key={index}
                 className="overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
               >
-                {/* Icon as image placeholder - you can replace with actual service images */}
                 <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
                   {feature.icon}
                 </div>
@@ -185,8 +207,25 @@ const ExploreAndFeatures = () => {
             ))}
           </div>
         </TabsContent>
+
+        <div className="flex justify-center mt-10">
+          <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
+            <TabsTrigger
+              value="explore"
+              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Explore The Island
+            </TabsTrigger>
+            <TabsTrigger
+              value="features"
+              className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
+              Our Services
+            </TabsTrigger>
+          </TabsList>
+        </div>
       </Tabs>
-    </div>
+    </section>
   );
 };
 

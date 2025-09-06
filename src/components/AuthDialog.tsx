@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useNavigate } from "react-router-dom";
 
 interface AuthDialogProps {
   open: boolean;
@@ -19,11 +20,12 @@ interface AuthDialogProps {
 }
 
 export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
+  const { signInWithEmail, signUpWithEmail } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isDriver, setIsDriver] = useState(false);
+  const navigate = useNavigate();
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +36,9 @@ export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
         password,
         options: { data: { role: isDriver ? "driver" : "user" } },
       });
-      setMessage("Success! Check your email for a verification link.");
+      setMessage("Success! Redirecting to your account.");
+      onOpenChange(false);
+      navigate("/account");
     } catch (error: any) {
       setMessage(error.message);
     }
@@ -72,19 +76,6 @@ export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
         </div>
 
         <div className="py-4">
-          <Button
-            variant="outline"
-            className="w-full mb-4"
-            onClick={signInWithGoogle}
-          >
-            <svg role="img" viewBox="0 0 24 24" className="w-4 h-4 mr-2">
-              <path
-                fill="currentColor"
-                d="M12.48 10.92v3.28h7.84c-.24 1.84-.85 3.18-1.73 4.1-1.02 1.02-2.6 1.98-4.66 1.98-3.55 0-6.42-2.84-6.42-6.32s2.87-6.32 6.42-6.32c2.03 0 3.36.83 4.14 1.58l2.36-2.36C18.17 2.7 15.64 1.5 12.48 1.5 7.18 1.5 3 5.66 3 11.02s4.18 9.52 9.48 9.52c2.56 0 4.66-.83 6.17-2.35 1.56-1.56 2.06-3.85 2.06-5.81 0-.6-.05-1.18-.15-1.74h-8.07z"
-              ></path>
-            </svg>
-            Sign in with Google
-          </Button>
           <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

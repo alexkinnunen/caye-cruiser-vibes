@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import golfCartIcon from "@/assets/golf-cart-icon.png";
+import golfCartIcon from "@/assets/golfcart.svg";
 import {
   Facebook,
   Instagram,
@@ -53,23 +53,15 @@ const Footer = () => {
                   href="/#features"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Features
+                  Catch a Cruiser
                 </a>
               </li>
               <li>
                 <a
-                  href="/#vehicles"
+                  href="/#rentals"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Vehicle Classes
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#about"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  About Us
+                  Rentals
                 </a>
               </li>
             </ul>
@@ -87,6 +79,14 @@ const Footer = () => {
               </li>
               <li>
                 <span className="text-muted-foreground">Island Tours</span>
+              </li>
+              <li>
+                <a
+                  href="/#about"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  About Us
+                </a>
               </li>
             </ul>
           </div>
