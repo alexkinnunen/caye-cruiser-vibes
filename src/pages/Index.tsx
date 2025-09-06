@@ -1,6 +1,3 @@
-// src/pages/index.js or a similar file
-
-// All imports are consolidated at the top of the file
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";

@@ -11,11 +11,10 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PointsOfInterest } from "../data/PointsOfInterest";
+import { PointsOfInterest } from "@/data/PointsOfInterest";
 import { MapPin, Truck, Smartphone } from "lucide-react";
 
 const ExploreAndFeatures = () => {
-  // Use the environment variable
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
   const handleRequestRide = (locationTitle: string) => {

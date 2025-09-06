@@ -19,7 +19,7 @@ import Footer from "@/components/Footer";
 import fullBg from "@/assets/full-bg.svg";
 
 const Partners = () => {
-  const WHATSAPP_NUMBER = "5016252086";
+  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
   const partnerTypes = [
     {

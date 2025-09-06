@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
-import aboutImage from "../assets/golf-carts-on-san-pedro-beach.jpg";
+import aboutImage from "@/assets/golf-carts-on-san-pedro-beach.jpg";
 
 const About = () => {
   const testimonials = [

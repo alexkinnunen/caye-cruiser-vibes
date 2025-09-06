@@ -1,5 +1,3 @@
-// src/hooks/useAuth.tsx
-
 import {
   useState,
   useEffect,

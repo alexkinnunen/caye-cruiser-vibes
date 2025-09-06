@@ -1,13 +1,10 @@
-// src/components/InteractiveMap.tsx
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, ArrowRight, Users, Calendar } from "lucide-react";
-import Map from "react-map-gl"; // Using the same Mapbox component from your LiveMap page
-import "mapbox-gl/dist/mapbox-gl.css"; // Importing the required Mapbox CSS
+import Map from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-// Read the token from your environment variables
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const InteractiveMap = () => {
