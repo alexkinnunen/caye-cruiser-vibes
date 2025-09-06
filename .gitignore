@@ -29,7 +29,7 @@ coverage
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.vs/
+/.vs/
 .idea
 .DS_Store
 Thumbs.db
