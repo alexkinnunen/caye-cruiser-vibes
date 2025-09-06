@@ -8,9 +8,22 @@ const QuickFeatures = () => {
           <Clock className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="font-semibold text-sm text-white">On-Demand</h3>
+          <h3 className="font-semibold text-sm text-white">
+            Don't Risk the Rental
+          </h3>
           <p className="text-xs text-primary-foreground/80">
-            No need to book in advance
+            You Drink. We Drive.{" "}
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+          <MapPin className="w-5 h-5 text-white" />
+        </div>
+        <div>
+          <h3 className="font-semibold text-sm text-white">On Demand</h3>
+          <p className="text-xs text-primary-foreground/80">
+            No scheduling needed.
           </p>
         </div>
       </div>
@@ -21,20 +34,7 @@ const QuickFeatures = () => {
         <div>
           <h3 className="font-semibold text-sm text-white">Trusted Locals</h3>
           <p className="text-xs text-primary-foreground/80">
-            Safe and reliable drivers
-          </p>
-        </div>
-      </div>
-      <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
-        <div className="w-13 h-10 bg-white/20 rounded-full flex items-center justify-center">
-          <MapPin className="w-5 h-5 text-white" />
-        </div>
-        <div>
-          <h3 className="font-semibold text-sm text-white">
-            Don't risk the rental
-          </h3>
-          <p className="text-xs text-primary-foreground/80">
-            You Drink, We Drive
+            Safe and reliable drivers.
           </p>
         </div>
       </div>

@@ -10,15 +10,15 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: <MessageSquare className="w-8 h-8" />,
-      title: "1. Message Us",
+      title: "1. Pick A Spot",
       description:
-        "Send a quick message on WhatsApp with your location and destination.",
+        "Choose your location and destination. Not sure? Explore our adventures below!",
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "2. Get Matched",
       description:
-        "We'll instantly connect you with the nearest available Caye Cruiser driver.",
+        "We'll instantly connect you with the nearest available Caye Cruiser driver via WhatsApp.",
     },
     {
       icon: <Map className="w-8 h-8" />,

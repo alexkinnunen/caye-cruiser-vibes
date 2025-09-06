@@ -291,7 +291,7 @@ const Partners = () => {
             <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
               Partner Support & Features
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               We provide comprehensive support to ensure your success as a Caye
               Cruiser partner.
             </p>
@@ -320,10 +320,11 @@ const Partners = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-green/10 text-green">
+      <section className="py-16 bg-green/10 text-med-purple">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
-            Ready to Join the Caye Cruiser Network?
+            Ready to Join the <span className="text-green">Caye Cruiser </span>
+            Network?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto text-muted-foreground">
             Be part of San Pedro's transportation revolution. Contact us today

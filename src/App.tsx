@@ -6,7 +6,7 @@ import Index from "./pages/Index";
 import Rentals from "./pages/Rentals";
 import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
-import LiveMap from "./pages/LiveMap";
+import LiveMap from "./pages/MapAndExplore";
 
 const queryClient = new QueryClient();
 
