@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import { Toaster as Sonner } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,22 +9,27 @@ import Rentals from "./pages/Rentals";
 import Partners from "./pages/Partners";
 import NotFound from "./pages/NotFound";
 import LiveMap from "./pages/MapAndExplore";
+import { AuthProvider } from "./hooks/useAuth"; // Import the provider
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/rentals" element={<Rentals />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/map" element={<LiveMap />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        {" "}
+        {/* Wrap with AuthProvider */}
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/rentals" element={<Rentals />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/map" element={<LiveMap />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

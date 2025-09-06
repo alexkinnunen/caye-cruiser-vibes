@@ -1,25 +1,38 @@
+// src/components/InteractiveMap.tsx
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, ArrowRight, Users, Calendar } from "lucide-react";
+import Map from "react-map-gl"; // Using the same Mapbox component from your LiveMap page
+import "mapbox-gl/dist/mapbox-gl.css"; // Importing the required Mapbox CSS
+
+// Read the token from your environment variables
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const InteractiveMap = () => {
   return (
-    // The section has no background, allowing the pattern to show in the padding area.
     <section id="interactive-map" className="pt-10">
       <div className="container mx-auto px-4">
         <Card className="overflow-hidden shadow-2xl bg-white dark:bg-slate-950">
           <CardContent className="p-0">
             {/* Map and Floating Button Container */}
             <div className="relative">
-              {/* Map Placeholder */}
-              <div className="h-96 bg-gray-200 flex items-center justify-center">
-                <p className="text-muted-foreground">
-                  Interactive Map Placeholder
-                </p>
+              {/* Mapbox implementation from your project */}
+              <div className="h-96">
+                <Map
+                  initialViewState={{
+                    latitude: 17.9163, // Centered on San Pedro
+                    longitude: -87.9665,
+                    zoom: 13,
+                  }}
+                  style={{ width: "100%", height: "100%" }}
+                  mapStyle="mapbox://styles/mapbox/streets-v11"
+                  mapboxAccessToken={MAPBOX_TOKEN}
+                />
               </div>
 
-              {/* Floating Action Button */}
+              {/* Floating Action Button - This remains exactly the same */}
               <div className="absolute bottom-4 right-4">
                 <Button size="lg" className="shadow-lg">
                   Request a Ride <ArrowRight className="ml-2 w-5 h-5" />
@@ -27,7 +40,7 @@ const InteractiveMap = () => {
               </div>
             </div>
 
-            {/* Input Section */}
+            {/* Input Section - This also remains exactly the same */}
             <div className="p-6 bg-background space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                 <div className="relative">
