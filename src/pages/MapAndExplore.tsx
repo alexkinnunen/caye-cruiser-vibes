@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Smartphone, MapPin, ExternalLink } from "lucide-react";
-import InteractiveMap from "@/components/InteractiveMap"; // Import the component
+import InteractiveMap from "@/components/InteractiveMap";
 
 type PointOfInterest = {
   id: number;
@@ -29,7 +29,7 @@ type PointOfInterest = {
 };
 
 const MapAndExplore = () => {
-  const [PointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
+  const [pointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
     []
   );
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
@@ -58,7 +58,7 @@ const MapAndExplore = () => {
 
       if (error) {
         console.error("Error fetching points of interest:", error);
-      } else {
+      } else if (data) {
         setPointsOfInterest(data);
       }
     };
@@ -105,7 +105,6 @@ const MapAndExplore = () => {
           />
 
           <div className="relative pt-20 z-10">
-            {/* --- Explore and Features Section --- */}
             <section className="relative z-10 pt-10 pb-20">
               <div className="container mx-auto px-4">
                 <h1 className="text-4xl text-center md:text-6xl font-bold font-serif text-foreground mb-6">
@@ -113,34 +112,34 @@ const MapAndExplore = () => {
                 </h1>
                 <p className="text-xl text-center text-muted-foreground mb-8 leading-relaxed">
                   You Drink. We'll Drive. Explore top spots and our unique
-                  services, all with Caye Cruiser ride.
+                  services, all with a Caye Cruiser ride.
                 </p>
 
-                <div className="flex justify-center mt-10">
-                  <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
-                    <TabsTrigger
-                      value="explore"
-                      className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                    >
-                      Explore The Island
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="features"
-                      className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
-                    >
-                      Our Services
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
-
                 <Tabs defaultValue="explore" className="w-full">
+                  <div className="flex justify-center mb-12">
+                    <TabsList className="grid w-full grid-cols-2 max-w-md h-12 bg-muted p-1 rounded-lg">
+                      <TabsTrigger
+                        value="explore"
+                        className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        Explore The Island
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="features"
+                        className="text-base rounded-md data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                      >
+                        Our Services
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+
                   <TabsContent value="explore">
                     <Carousel
                       opts={{ align: "start", loop: true }}
                       className="w-full max-w-6xl mx-auto"
                     >
                       <CarouselContent className="-ml-2 p-4">
-                        {PointsOfInterest.map((poi) => (
+                        {pointsOfInterest.map((poi) => (
                           <CarouselItem
                             key={poi.id}
                             className="pl-2 md:basis-1/2 lg:basis-1/3"
@@ -243,10 +242,10 @@ const MapAndExplore = () => {
                     </div>
                   </TabsContent>
                 </Tabs>
-                {/* --- Interactive Map Section --- */}
-                <InteractiveMap />
               </div>
             </section>
+
+            <InteractiveMap />
           </div>
         </div>
       </main>
