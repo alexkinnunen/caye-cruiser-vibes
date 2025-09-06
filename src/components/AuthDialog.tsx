@@ -1,18 +1,17 @@
-// src/components/AuthDialog.tsx
-
 import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "../hooks/useAuth";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "./ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Switch } from "./ui/switch";
 
 interface AuthDialogProps {
   open: boolean;
@@ -24,12 +23,17 @@ export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isDriver, setIsDriver] = useState(false);
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("");
     try {
-      await signUpWithEmail({ email, password });
+      await signUpWithEmail({
+        email,
+        password,
+        options: { data: { role: isDriver ? "driver" : "user" } },
+      });
       setMessage("Success! Check your email for a verification link.");
     } catch (error: any) {
       setMessage(error.message);
@@ -41,7 +45,7 @@ export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
     setMessage("");
     try {
       await signInWithEmail({ email, password });
-      onOpenChange(false); // Close dialog on successful sign-in
+      onOpenChange(false);
     } catch (error: any) {
       setMessage(error.message);
     }
@@ -56,6 +60,17 @@ export const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
             Sign in or create an account to manage your rides.
           </DialogDescription>
         </DialogHeader>
+
+        <div className="flex items-center space-x-2 justify-center pt-4">
+          <Label htmlFor="user-type-switch">Rider</Label>
+          <Switch
+            id="user-type-switch"
+            checked={isDriver}
+            onCheckedChange={setIsDriver}
+          />
+          <Label htmlFor="user-type-switch">Driver</Label>
+        </div>
+
         <div className="py-4">
           <Button
             variant="outline"
