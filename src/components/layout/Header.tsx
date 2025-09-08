@@ -1,5 +1,3 @@
-// src/components/Header.tsx
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -15,14 +13,14 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center">
+          <div className="flex items-center gap-8 mt-">
+            <Link to="/" className="flex items-center gap-2">
               <img src={golfCartIcon} alt="Caye Cruiser" className="w-8 h-8" />
-              <h1 className="text-2xl font-bold text-coral-green">
+              <h1 className="text-2xl font-bold text-primary">
                 Caye Cruiser
               </h1>
             </Link>
-            <nav className="flex items-center gap-4">
+            <nav className="flex items-center gap-4 mt-2">
               <Link
                 to="/map"
                 className="text-foreground hover:text-primary transition-colors font-medium"
