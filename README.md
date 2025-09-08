@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+Caye Cruiser
 
-## Project info
+This is the repository for the Caye Cruiser project, a ride-sharing and golf cart rental service for San Pedro, Ambergris Caye, Belize.
 
-**URL**: https://lovable.dev/projects/919d64e2-ab47-41a2-a88b-6c75422d7e25
+Technologies Used
 
-## How can I edit this code?
+This project is built with a modern tech stack:
 
-There are several ways of editing your application.
+Frontend:
+    -   Vite
+    -   React
+    -   TypeScript
+    -   Tailwind CSS
+    -   shadcn/ui
+Backend:
+    -   Supabase (Authentication, Database, Serverless Functions)
+Payments:
+    -   Stripe
 
-**Use Lovable**
+Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/919d64e2-ab47-41a2-a88b-6c75422d7e25) and start prompting.
+To get a local copy up and running, follow these simple steps.
 
-Changes made via Lovable will be committed automatically to this repo.
+Prerequisites
 
-**Use your preferred IDE**
+You'll need to have [Node.js](https://nodejs.org/) installed on your machine. I recommend using [nvm](https://github.com/nvm-sh/nvminstalling-and-updating) to manage your Node.js versions.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1.  Clone the repo
+    
+    git clone <https://github.com/alexkinnunen/caye-cruiser-vibes.git>
+    
+2.  Navigate to the project directory
+    
+    cd caye-cruiser-vibes
+    
+3.  Install NPM packages
+    
+    npm install
+    
+4.  Set up your environment variables
 
-Follow these steps:
+    Create a `.env` file in the root of the project and add the following variables:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+    
+    VITE_SUPABASE_URL="YOUR_SUPABASE_URL"
+    VITE_SUPABASE_PUBLISHABLE_KEY="YOUR_SUPABASE_PUBLISHABLE_KEY"
+    VITE_MAPBOX_TOKEN="YOUR_MAPBOX_TOKEN"
+    VITE_WHATSAPP_NUMBER="YOUR_WHATSAPP_NUMBER"
+    
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+5.  Start the development server
+    
+    npm run dev
+    
 
-# Step 3: Install the necessary dependencies.
-npm i
+    The application will be available at `http://localhost:5173`.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Supabase Setup
 
-**Edit a file directly in GitHub**
+This project uses Supabase for the backend. To get started, you'll need to create a new project on [Supabase](https://supabase.com/) and then set up the database schema using the provided migration file.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+You can find the database migration file in `supabase/migrations/`.
 
-**Use GitHub Codespaces**
+Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/919d64e2-ab47-41a2-a88b-6c75422d7e25) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+You can deploy this project to any modern hosting provider that supports Node.js, such as Vercel, Netlify, or your own server.
