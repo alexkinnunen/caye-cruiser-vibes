@@ -1,0 +1,13 @@
+name: 'CI - Trigger n8n Type Generation'
+
+on:
+  push:
+    branches:
+      - main # This workflow only runs on pushes to the main branch
+
+jobs:
+  trigger_n8n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call n8n Webhook to Generate Types'
+        run: curl -X POST ${{ secrets.N8N_WEBHOOK_URL }}
