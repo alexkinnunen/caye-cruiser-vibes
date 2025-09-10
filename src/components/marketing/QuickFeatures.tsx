@@ -1,4 +1,4 @@
-import { Clock, Shield, MapPin } from "lucide-react";
+import { Clock, MapPin, Shield } from "lucide-react";
 
 const QuickFeatures = () => {
   return (

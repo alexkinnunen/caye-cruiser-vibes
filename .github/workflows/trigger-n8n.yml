@@ -1,4 +1,4 @@
-name: 'CI - Trigger n8n Type Generation'
+name: "CI - Trigger n8n Type Generation"
 
 on:
   push:
@@ -9,5 +9,5 @@ jobs:
   trigger_n8n:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Call n8n Webhook to Generate Types'
+      - name: "Call n8n Webhook to Generate Types"
         run: curl -X POST ${{ secrets.N8N_WEBHOOK_URL }}

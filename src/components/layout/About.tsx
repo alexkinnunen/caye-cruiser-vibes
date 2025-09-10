@@ -83,8 +83,8 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-16 border-t">
           <div className="text-center md:text-left">
             <h3 className="text-3xl md:text-4xl font-bold mb-4 font-serif text-foreground">
-              <span className="text-primary">For the Island,</span> By the
-              Island.
+              <span className="text-primary">For the Island,</span>{" "}
+              By the Island.
             </h3>
             <p className="text-lg text-muted-foreground mb-4">
               Caye Cruiser Vibes was born from a love for San Pedro. We're not

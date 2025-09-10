@@ -15,7 +15,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Truck, Smartphone, MapPin, ExternalLink } from "lucide-react";
+import { ExternalLink, MapPin, Smartphone, Truck } from "lucide-react";
 import InteractiveMap from "@/components/map/InteractiveMap";
 
 type PointOfInterest = {
@@ -30,23 +30,24 @@ type PointOfInterest = {
 
 const MapAndExplore = () => {
   const [pointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
-    []
+    [],
   );
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
   const handleRequestRide = (locationTitle: string) => {
     const message = `Hi Caye Cruiser! I'd like a ride to ${locationTitle}.`;
-    window.open(
+    globalThis.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      "_blank",
     );
   };
 
   const handleRequestService = (serviceTitle: string) => {
-    const message = `Hi Caye Cruiser! I'm interested in your ${serviceTitle} service.`;
-    window.open(
+    const message =
+      `Hi Caye Cruiser! I'm interested in your ${serviceTitle} service.`;
+    globalThis.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -108,7 +109,7 @@ const MapAndExplore = () => {
             <section className="relative z-10 pt-10 pb-20">
               <div className="container mx-auto px-4">
                 <h1 className="text-4xl text-center md:text-6xl font-bold font-serif text-foreground mb-6">
-                  Don't <span className="text-primary">Risk </span>the Rental
+                  Don't <span className="text-primary">Risk</span>the Rental
                 </h1>
                 <p className="text-xl text-center text-muted-foreground mb-8 leading-relaxed">
                   You Drink. We'll Drive. Explore top spots and our unique
@@ -229,8 +230,7 @@ const MapAndExplore = () => {
                           <CardFooter>
                             <Button
                               onClick={() =>
-                                handleRequestService(feature.title)
-                              }
+                                handleRequestService(feature.title)}
                               className="w-full"
                               variant="herolink"
                             >

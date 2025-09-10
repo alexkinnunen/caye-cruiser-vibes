@@ -43,26 +43,28 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {user ? (
-              <>
-                <Link to="/account">
-                  <Button variant="outline" size="sm">
-                    Account
+            {user
+              ? (
+                <>
+                  <Link to="/account">
+                    <Button variant="outline" size="sm">
+                      Account
+                    </Button>
+                  </Link>
+                  <Button variant="outline" size="sm" onClick={signOut}>
+                    Sign Out
                   </Button>
-                </Link>
-                <Button variant="outline" size="sm" onClick={signOut}>
-                  Sign Out
+                </>
+              )
+              : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setAuthDialogOpen(true)}
+                >
+                  Sign In
                 </Button>
-              </>
-            ) : (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setAuthDialogOpen(true)}
-              >
-                Sign In
-              </Button>
-            )}
+              )}
           </div>
         </div>
       </header>

@@ -1,18 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  CheckCircle,
-  DollarSign,
-  Zap,
-  Users,
-  MapPin,
   Building2,
   Car,
-  Smartphone,
+  CheckCircle,
   Clock,
-  Shield,
-  TrendingUp,
+  DollarSign,
   Heart,
+  MapPin,
+  Shield,
+  Smartphone,
+  TrendingUp,
+  Users,
+  Zap,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -142,9 +142,9 @@ const Partners = () => {
   ];
 
   const handlePartnerContact = (message: string) => {
-    window.open(
+    globalThis.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -174,9 +174,8 @@ const Partners = () => {
               variant="herolink"
               onClick={() =>
                 handlePartnerContact(
-                  "I'm interested in learning more about partnership opportunities with Caye Cruiser"
-                )
-              }
+                  "I'm interested in learning more about partnership opportunities with Caye Cruiser",
+                )}
             >
               Start Your Partnership Journey
             </Button>
@@ -323,7 +322,7 @@ const Partners = () => {
       <section className="py-16 bg-green/10 text-med-purple">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4">
-            Ready to Join the <span className="text-green">Caye Cruiser </span>
+            Ready to Join the <span className="text-green">Caye Cruiser</span>
             Network?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto text-muted-foreground">
@@ -336,9 +335,8 @@ const Partners = () => {
             variant="herolink"
             onClick={() =>
               handlePartnerContact(
-                "I'm ready to become a Caye Cruiser partner. Please send me more information."
-              )
-            }
+                "I'm ready to become a Caye Cruiser partner. Please send me more information.",
+              )}
           >
             Get Started Today
           </Button>

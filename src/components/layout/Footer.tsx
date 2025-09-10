@@ -3,10 +3,10 @@ import golfCartIcon from "@/assets/golfcart.svg";
 import {
   Facebook,
   Instagram,
-  Twitter,
   Mail,
   MapPin,
   Phone,
+  Twitter,
 } from "lucide-react";
 
 const Footer = () => {

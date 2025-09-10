@@ -1,17 +1,18 @@
 import {
-  useState,
-  useEffect,
   createContext,
-  useContext,
   ReactNode,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import {
+  AuthError,
+  AuthResponse,
   Session,
-  User,
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
-  AuthError,
+  User,
 } from "@supabase/supabase-js";
 
 type AuthContextType = {
@@ -20,8 +21,13 @@ type AuthContextType = {
   loading: boolean;
   error: AuthError | null;
   signInWithGoogle: () => Promise<void>;
-  signInWithEmail: (credentials: SignInWithPasswordCredentials) => Promise<any>;
-  signUpWithEmail: (credentials: SignUpWithPasswordCredentials) => Promise<any>;
+  // Corrected return types to match the implementation
+  signInWithEmail: (
+    credentials: SignInWithPasswordCredentials,
+  ) => Promise<AuthResponse["data"]>;
+  signUpWithEmail: (
+    credentials: SignUpWithPasswordCredentials,
+  ) => Promise<AuthResponse["data"]>;
   signOut: () => Promise<void>;
   clearError: () => void;
 };
@@ -38,7 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const getSession = async () => {
       try {
         const { data, error } = await supabase.auth.getSession();
-        
+
         if (error) {
           console.error("Error getting session:", error);
           setError(error);
@@ -57,17 +63,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     getSession();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         console.log("Auth state changed:", event, session?.user?.id);
         setSession(session);
         setUser(session?.user ?? null);
         setError(null); // Clear any previous errors on auth state change
-        
+
         // Only set loading to false after initial load
         if (loading) {
           setLoading(false);
         }
-      }
+      },
     );
 
     return () => {
@@ -92,7 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signInWithEmail = async (
-    credentials: SignInWithPasswordCredentials
+    credentials: SignInWithPasswordCredentials,
   ) => {
     setError(null);
     const { data, error } = await supabase.auth.signInWithPassword(credentials);
@@ -104,7 +110,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signUpWithEmail = async (
-    credentials: SignUpWithPasswordCredentials
+    credentials: SignUpWithPasswordCredentials,
   ) => {
     setError(null);
     const { data, error } = await supabase.auth.signUp(credentials);
@@ -149,40 +155,42 @@ export const useAuth = () => {
 };
 
 // Loading wrapper component to prevent UI flickering during initial auth check
-export const AuthGuard = ({ 
-  children, 
-  fallback 
-}: { 
-  children: ReactNode; 
+export const AuthGuard = ({
+  children,
+  fallback,
+}: {
+  children: ReactNode;
   fallback?: ReactNode;
 }) => {
   const { loading } = useAuth();
-  
+
   if (loading) {
     return fallback || (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary">
+        </div>
       </div>
     );
   }
-  
+
   return <>{children}</>;
 };
 
 // Error boundary component for auth errors
-export const AuthErrorDisplay = ({ 
-  className = "text-red-500 text-sm mb-4" 
-}: { 
+export const AuthErrorDisplay = ({
+  className = "text-red-500 text-sm mb-4",
+}: {
   className?: string;
 }) => {
   const { error, clearError } = useAuth();
-  
+
   if (!error) return null;
-  
+
   return (
     <div className={className}>
       <p>{error.message}</p>
-      <button 
+      <button
+        type="button" // Added type attribute here
         onClick={clearError}
         className="text-xs underline mt-1"
       >

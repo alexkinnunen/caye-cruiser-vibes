@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
@@ -11,7 +11,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Truck, Smartphone, ExternalLink } from "lucide-react";
+import { ExternalLink, MapPin, Smartphone, Truck } from "lucide-react";
 
 // Define the type for a Point of Interest, matching the database structure
 type PointOfInterest = {
@@ -26,7 +26,7 @@ type PointOfInterest = {
 
 const ExploreAndFeatures = () => {
   const [pointsOfInterest, setPointsOfInterest] = useState<PointOfInterest[]>(
-    []
+    [],
   );
   const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
@@ -48,17 +48,18 @@ const ExploreAndFeatures = () => {
 
   const handleRequestRide = (locationTitle: string) => {
     const message = `Hi Caye Cruiser! I'd like a ride to ${locationTitle}.`;
-    window.open(
+    globalThis.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      "_blank",
     );
   };
 
   const handleRequestService = (serviceTitle: string) => {
-    const message = `Hi Caye Cruiser! I'm interested in your ${serviceTitle} service.`;
-    window.open(
+    const message =
+      `Hi Caye Cruiser! I'm interested in your ${serviceTitle} service.`;
+    globalThis.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      "_blank",
     );
   };
 

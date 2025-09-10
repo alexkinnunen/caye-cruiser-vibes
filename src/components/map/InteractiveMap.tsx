@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MapPin, ArrowRight, Users, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import Map from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 

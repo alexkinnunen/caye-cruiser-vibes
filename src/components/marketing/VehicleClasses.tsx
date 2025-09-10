@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Car, Users, Leaf, Crown, CheckCircle } from "lucide-react";
+import { Car, CheckCircle, Crown, Leaf, Users } from "lucide-react";
 
 const VehicleClasses = () => {
   const vehicles = [

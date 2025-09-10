@@ -1,10 +1,10 @@
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
-import { Zap, MessageSquare, Map } from "lucide-react";
+import { Map, MessageSquare, Zap } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [

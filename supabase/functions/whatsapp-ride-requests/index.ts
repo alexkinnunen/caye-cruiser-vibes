@@ -14,7 +14,8 @@ const META_PHONE_NUMBER_ID = Deno.env.get("META_PHONE_NUMBER_ID");
 const META_VERIFY_TOKEN = Deno.env.get("META_VERIFY_TOKEN");
 
 const sendWhatsAppMessage = async (to: string, text: string) => {
-  const endpoint = `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`;
+  const endpoint =
+    `https://graph.facebook.com/v18.0/${META_PHONE_NUMBER_ID}/messages`;
 
   const response = await fetch(endpoint, {
     method: "POST",
@@ -35,7 +36,7 @@ const sendWhatsAppMessage = async (to: string, text: string) => {
   }
 };
 
-serve(async (req) => {
+serve((req) => {
   if (req.method === "GET") {
     return handleVerification(req);
   }
@@ -63,7 +64,7 @@ const handleVerification = (req: Request) => {
 const handleWebhook = async (req: Request) => {
   const supabase = createClient<Database>(
     Deno.env.get("SUPABASE_URL") ?? "",
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
   );
 
   try {
@@ -99,7 +100,7 @@ const handleWebhook = async (req: Request) => {
 async function handlePassengerMessage(
   supabase: SupabaseAdminClient,
   from: string,
-  body: string
+  body: string,
 ) {
   const { data: availableDriver } = await supabase
     .from("drivers")
@@ -111,7 +112,7 @@ async function handlePassengerMessage(
   if (!availableDriver) {
     await sendWhatsAppMessage(
       from,
-      "Sorry, all our drivers are currently busy. Please try again in a few minutes."
+      "Sorry, all our drivers are currently busy. Please try again in a few minutes.",
     );
     return;
   }
@@ -130,18 +131,18 @@ async function handlePassengerMessage(
 
   await sendWhatsAppMessage(
     from,
-    `We've found a driver for you! We're just waiting for them to confirm.`
+    `We've found a driver for you! We're just waiting for them to confirm.`,
   );
   await sendWhatsAppMessage(
     availableDriver.phone_number,
-    `New Ride Request!\nFrom: ${from}\nPickup: ${body}\n\nReply "accept" to take this ride or "decline" to pass.`
+    `New Ride Request!\nFrom: ${from}\nPickup: ${body}\n\nReply "accept" to take this ride or "decline" to pass.`,
   );
 }
 
 async function handleDriverMessage(
   supabase: SupabaseAdminClient,
   driver: Driver,
-  body: string
+  body: string,
 ) {
   const { data: ride } = await supabase
     .from("rides")
@@ -155,7 +156,7 @@ async function handleDriverMessage(
   if (!ride) {
     await sendWhatsAppMessage(
       driver.phone_number,
-      "Thanks, but you don't have any pending ride requests right now."
+      "Thanks, but you don't have any pending ride requests right now.",
     );
     return;
   }
@@ -168,11 +169,11 @@ async function handleDriverMessage(
 
     await sendWhatsAppMessage(
       driver.phone_number,
-      "Ride accepted! Please proceed to the pickup location."
+      "Ride accepted! Please proceed to the pickup location.",
     );
     await sendWhatsAppMessage(
       ride.passenger_phone,
-      `Your ride is confirmed! ${driver.name} is on the way.`
+      `Your ride is confirmed! ${driver.name} is on the way.`,
     );
   } else if (body.includes("decline")) {
     await supabase
@@ -187,11 +188,11 @@ async function handleDriverMessage(
 
     await sendWhatsAppMessage(
       driver.phone_number,
-      "Ride declined. We will find another driver."
+      "Ride declined. We will find another driver.",
     );
     await sendWhatsAppMessage(
       ride.passenger_phone,
-      "We're sorry, the driver was unable to take your request. We are looking for another one."
+      "We're sorry, the driver was unable to take your request. We are looking for another one.",
     );
   } else if (body.includes("complete")) {
     await supabase
@@ -207,16 +208,16 @@ async function handleDriverMessage(
 
     await sendWhatsAppMessage(
       driver.phone_number,
-      "Ride marked as complete. You are now available for new requests."
+      "Ride marked as complete. You are now available for new requests.",
     );
     await sendWhatsAppMessage(
       ride.passenger_phone,
-      "Thanks for riding with us!"
+      "Thanks for riding with us!",
     );
   } else {
     await sendWhatsAppMessage(
       driver.phone_number,
-      'Sorry, I didn\'t understand that. Please reply with "accept", "decline", or "complete".'
+      'Sorry, I didn\'t understand that. Please reply with "accept", "decline", or "complete".',
     );
   }
 }

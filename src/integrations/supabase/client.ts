@@ -1,7 +1,7 @@
 // src/integrations/supabase/client.ts
-import { createClient } from '@supabase/supabase-js'
-import { env } from '@/lib/env'
-import type { Database } from '@/integrations/supabase/types'
+import { createClient } from "@supabase/supabase-js";
+import { env } from "@/lib/env";
+import type { Database } from "@/integrations/supabase/types";
 
 // Create Supabase client with validated environment variables
 export const supabase = createClient<Database>(
@@ -11,10 +11,10 @@ export const supabase = createClient<Database>(
     auth: {
       autoRefreshToken: true,
       persistSession: true,
-      detectSessionInUrl: true
-    }
-  }
-)
+      detectSessionInUrl: true,
+    },
+  },
+);
 
 // Export types for better TypeScript support
-export type SupabaseClient = typeof supabase
+export type SupabaseClient = typeof supabase;

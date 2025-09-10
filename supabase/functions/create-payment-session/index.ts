@@ -6,8 +6,9 @@ import { z, ZodError } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 // Define CORS headers. Replace the origin with your actual frontend URL in production.
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*', // Or 'https://your-domain.com' for production
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  "Access-Control-Allow-Origin": "*", // Or 'https://your-domain.com' for production
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
 };
 
 // Initialize Stripe with the API key from environment variables.
@@ -24,8 +25,8 @@ const PaymentRequestSchema = z.object({
 
 serve(async (req: Request) => {
   // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
@@ -57,7 +58,9 @@ serve(async (req: Request) => {
       ],
       mode: "payment",
       // IMPORTANT: Replace these with your actual frontend URLs
-      success_url: `${Deno.env.get("VITE_APP_URL")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${
+        Deno.env.get("VITE_APP_URL")
+      }/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${Deno.env.get("VITE_APP_URL")}/payment-cancelled`,
     });
 
@@ -66,16 +69,18 @@ serve(async (req: Request) => {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
-
   } catch (error) {
     // Handle validation errors
     if (error instanceof ZodError) {
       return new Response(
-        JSON.stringify({ error: "Invalid request body", details: error.issues }),
+        JSON.stringify({
+          error: "Invalid request body",
+          details: error.issues,
+        }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
+        },
       );
     }
 
